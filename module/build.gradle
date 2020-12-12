@@ -40,5 +40,4 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.Tianscar:SoundTouch4Android:1.1.1'
 }
