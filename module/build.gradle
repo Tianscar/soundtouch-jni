@@ -21,9 +21,9 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            zipAlignEnabled true
+            //zipAlignEnabled true
         }
     }
     compileOptions {
@@ -40,4 +40,5 @@ android {
 }
 
 dependencies {
+    implementation 'com.github.Tianscar:SoundTouch4Android:1.1.1'
 }
