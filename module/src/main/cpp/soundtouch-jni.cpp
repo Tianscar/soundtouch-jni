@@ -17,8 +17,8 @@
 using namespace std;
 
 #include "com_tianscar_soundtouch4android_SoundTouch.h"
-#include "soundtouch/SoundTouch.h"
-#include "soundtouch/WavFile.h"
+#include "SoundTouch.h"
+#include "WavFile.h"
 
 #define LOGV(...)   __android_log_print((int)ANDROID_LOG_INFO, "SOUNDTOUCH", __VA_ARGS__)
 //#define LOGV(...)
