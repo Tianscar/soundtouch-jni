@@ -3,11 +3,11 @@ package com.tianscar.soundtouch4android;
 /**
  * The SoundTouch class that invokes native SoundTouch routines through the JNI
  * interface.
+ *
  * @author Tianscar
  */
 public final class SoundTouch {
 
-    // Load the native library upon startup
     static {
         System.loadLibrary("soundtouch");
     }
@@ -65,10 +65,10 @@ public final class SoundTouch {
      * This value gives approximate value of how many input samples you'll need to
      * feed into SoundTouch after initial buffering to get out a new batch of
      * output samples.
-     *
+     * <p>
      * This value does not include initial buffering at beginning of a new processing
      * stream, use SETTING_INITIAL_LATENCY to get the initial buffering size.
-     *
+     * <p>
      * Notices:
      * - This is read-only parameter, i.e. setSetting ignores this parameter
      * - This parameter value is not constant but change depending on
@@ -79,7 +79,7 @@ public final class SoundTouch {
      * Call "getSetting" with this ID to query nominal average processing output
      * size in samples. This value tells approcimate value how many output samples
      * SoundTouch outputs once it does DSP processing run for a batch of input samples.
-     *
+     * <p>
      * Notices:
      * - This is read-only parameter, i.e. setSetting ignores this parameter
      * - This parameter value is not constant but change depending on
@@ -90,37 +90,35 @@ public final class SoundTouch {
      * Call "getSetting" with this ID to query initial processing latency, i.e.
      * approx. how many samples you'll need to enter to SoundTouch pipeline before
      * you can expect to get first batch of ready output samples out.
-     *
+     * <p>
      * After the first output batch, you can then expect to get approx.
      * SETTING_NOMINAL_OUTPUT_SEQUENCE ready samples out for every
      * SETTING_NOMINAL_INPUT_SEQUENCE samples that you enter into SoundTouch.
-     *
+     * <p>
      * Example:
-     *     processing with parameter -tempo=5
-     *     => initial latency = 5509 samples
-     *        input sequence  = 4167 samples
-     *        output sequence = 3969 samples
-     *
+     * processing with parameter -tempo=5
+     * => initial latency = 5509 samples
+     * input sequence  = 4167 samples
+     * output sequence = 3969 samples
+     * <p>
      * Accordingly, you can expect to feed in approx. 5509 samples at beginning of
      * the stream, and then you'll get out the first 3969 samples. After that, for
      * every approx. 4167 samples that you'll put in, you'll receive again approx.
      * 3969 samples out.
-     *
+     * <p>
      * This also means that average latency during stream processing is
      * INITIAL_LATENCY-OUTPUT_SEQUENCE/2, in the above example case 5509-3969/2
      * = 3524 samples
-     *
+     * <p>
      * Notices:
      * - This is read-only parameter, i.e. setSetting ignores this parameter
      * - This parameter value is not constant but change depending on
-     *   tempo/pitch/rate/samplerate settings.
+     * tempo/pitch/rate/samplerate settings.
      */
     public static final int SETTING_INITIAL_LATENCY = 8;
 
-    // Native instance
     private long handle;
 
-    // Is native instance released
     private boolean released;
 
     private native static long newInstance();
@@ -153,8 +151,6 @@ public final class SoundTouch {
     private native int setSettingValue(long handle, int settingId, int value);
     private native int getSettingValue(long handle, int settingId);
 
-    // Public API
-
     /**
      * Instantiates a new SoundTouch.
      */
@@ -175,9 +171,9 @@ public final class SoundTouch {
     }
 
     /**
-     * Gets max allowed number channels.
+     * Gets max allowed number of channels.
      *
-     * @return the max channels
+     * @return the max allowed number of channels
      */
     public static int getMaxChannels() {
         return SOUNDTOUCH_MAX_CHANNELS;
@@ -186,7 +182,7 @@ public final class SoundTouch {
     /**
      * Gets number of channels.
      *
-     * @return the channels
+     * @return number of channels
      */
     public int getChannels() {
         checkReleased();
@@ -196,7 +192,7 @@ public final class SoundTouch {
     /**
      * Sets the number of channels, 1 = mono, 2 = stereo.
      *
-     * @param channels the channels
+     * @param channels the number of channels
      */
     public void setChannels(int channels) {
         checkReleased();
@@ -224,7 +220,7 @@ public final class SoundTouch {
      * processed output duration: if you'll process a stream of N samples, then
      * you can expect to get out N * getInputOutputSampleRatio() samples.
      *
-     * @return the input output sample ratio
+     * @return the ratio between input and output audio durations
      */
     public double getInputOutputSampleRatio() {
         checkReleased();
@@ -234,7 +230,7 @@ public final class SoundTouch {
     /**
      * Gets number of samples currently unprocessed.
      *
-     * @return the unprocessed sample count
+     * @return the number of samples currently unprocessed
      */
     public int getUnprocessedSampleCount() {
         checkReleased();
@@ -244,7 +240,7 @@ public final class SoundTouch {
     /**
      * Gets number of samples currently available.
      *
-     * @return the sample count
+     * @return the number of samples currently available
      */
     public int getSampleCount() {
         checkReleased();
@@ -253,7 +249,6 @@ public final class SoundTouch {
 
     /**
      * Allow trimming (downwards) amount of samples in pipeline.
-     *
      *
      * @param amount the trimming (downwards) amount of samples
      * @return the adjusted amount of samples
@@ -270,7 +265,7 @@ public final class SoundTouch {
      * Adds 'amount' pcs of samples from the 'samples' memory position into the input of the object.
      *
      * @param samples the samples
-     * @param amount  the amount
+     * @param amount  the amount of samples from the 'samples' memory position into the input of the object
      */
     public void putSamples(short[] samples, int amount) {
         checkReleased();
@@ -287,7 +282,7 @@ public final class SoundTouch {
      *
      * @param sampleBuffer the sample buffer
      * @param maxSamples   the max number of samples to receive
-     * @return the number of samples returned.
+     * @return the number of samples returned
      */
     public int receiveSamples(short[] sampleBuffer, int maxSamples) {
         checkReleased();
@@ -302,7 +297,7 @@ public final class SoundTouch {
      * sample buffer without copying them anywhere.
      *
      * @param maxSamples the max number of samples to receive
-     * @return the number of samples returned.
+     * @return the number of samples returned
      */
     public int receiveSamples(int maxSamples) {
         checkReleased();
@@ -315,7 +310,7 @@ public final class SoundTouch {
     /**
      * Flushes the last samples from the processing pipeline to the output.
      * Clears also the internal processing buffers.
-     *
+     * <p>
      * Note: This function is meant for extracting the last samples of a sound
      * stream. This function may introduce additional blank samples in the end
      * of the sound stream, and thus it's not recommended to call this function
@@ -337,7 +332,7 @@ public final class SoundTouch {
     /**
      * Return true if there aren't any samples available for outputting.
      *
-     * @return the boolean
+     * @return whether there are no sample available
      */
     public boolean isEmpty() {
         checkReleased();
@@ -347,7 +342,7 @@ public final class SoundTouch {
     /**
      * Sets new rate control value. Normal rate = 1.0, smaller values represent slower rate, larger faster rates.
      *
-     * @param rate the rate
+     * @param rate the new rate
      */
     public void setRate(double rate) {
         checkReleased();
@@ -357,7 +352,7 @@ public final class SoundTouch {
     /**
      * Sets new tempo control value. Normal tempo = 1.0, smaller values represent slower tempo, larger faster tempo.
      *
-     * @param tempo the tempo
+     * @param tempo the new tempo
      */
     public void setTempo(double tempo) {
         checkReleased();
@@ -367,7 +362,7 @@ public final class SoundTouch {
     /**
      * Sets new rate control value as a difference in percents compared to the original rate (-50 .. +100 %)
      *
-     * @param rate the rate
+     * @param rate the new rate
      */
     public void setRateChange(double rate) {
         checkReleased();
@@ -377,7 +372,7 @@ public final class SoundTouch {
     /**
      * Sets new tempo control value as a difference in percents compared to the original tempo (-50 .. +100 %)
      *
-     * @param tempo the tempo
+     * @param tempo the new tempo
      */
     public void setTempoChange(double tempo) {
         checkReleased();
@@ -388,7 +383,7 @@ public final class SoundTouch {
      * Sets new pitch control value. Original pitch = 1.0, smaller values
      * represent lower pitches, larger values higher pitch.
      *
-     * @param pitch the pitch
+     * @param pitch the new pitch
      */
     public void setPitch(double pitch) {
         checkReleased();
@@ -398,7 +393,7 @@ public final class SoundTouch {
     /**
      * Sets pitch change in octaves compared to the original pitch (-1.00 .. +1.00)
      *
-     * @param pitch the pitch
+     * @param pitch the new pitch
      */
     public void setPitchOctaves(double pitch) {
         checkReleased();
@@ -408,7 +403,7 @@ public final class SoundTouch {
     /**
      * Sets pitch change in semi-tones compared to the original pitch (-12 .. +12)
      *
-     * @param pitch the pitch
+     * @param pitch the new pitch
      */
     public void setPitchSemiTones(int pitch) {
         checkReleased();
@@ -418,7 +413,7 @@ public final class SoundTouch {
     /**
      * Sets pitch change in semi-tones compared to the original pitch (-12 .. +12)
      *
-     * @param pitch the pitch
+     * @param pitch the new pitch
      */
     public void setPitchSemiTones(double pitch) {
         checkReleased();
@@ -430,8 +425,8 @@ public final class SoundTouch {
      * 'SETTING_...' constants for available setting ID's.
      *
      * @param settingId the setting id
-     * @param value     the value
-     * @return the setting value
+     * @param value     the setting value
+     * @return whether the setting was successfully changed
      */
     public boolean setSettingValue(int settingId, int value) {
         checkReleased();
@@ -469,16 +464,16 @@ public final class SoundTouch {
     }
 
     /**
-     * Return true if has been released.
+     * Return true if the instance has been released.
      *
-     * @return the boolean
+     * @return whether the instance has been released
      */
     public boolean isReleased() {
         return released;
     }
 
     /**
-     * Throw an exception if has been released.
+     * Throw an exception if the instance has been released.
      */
     private void checkReleased() {
         if (isReleased()) {
