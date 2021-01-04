@@ -14,13 +14,13 @@ using namespace soundtouch;
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_newInstance(JNIEnv *env, jclass clazz)
+Java_com_tianscar_soundtouch4android_SoundTouch_newInstance(JNIEnv *env, jclass clazz)
 {
 	return (jlong)(new SoundTouch());
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_deleteInstance(JNIEnv *env, jobject thiz, jlong handle)
+Java_com_tianscar_soundtouch4android_SoundTouch_deleteInstance(JNIEnv *env, jobject thiz, jlong handle)
 {
 	auto *ptr = (SoundTouch*)handle;
 	delete ptr;
@@ -28,54 +28,54 @@ Java_com_ansdoship_carbonizedcoil_media_SoundTouch_deleteInstance(JNIEnv *env, j
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_getChannels(JNIEnv *env, jobject thiz, jlong handle) {
+Java_com_tianscar_soundtouch4android_SoundTouch_getChannels(JNIEnv *env, jobject thiz, jlong handle) {
     auto *ptr = (SoundTouch*)handle;
     return ptr->numChannels();
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setChannels(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_setChannels(JNIEnv *env, jobject thiz, jlong handle,
                                                   jint channels) {
     auto *ptr = (SoundTouch*)handle;
     ptr->setChannels(channels);
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setSampleRate(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_setSampleRate(JNIEnv *env, jobject thiz, jlong handle,
                                                     jint srate) {
     auto *ptr = (SoundTouch*)handle;
     ptr->setSampleRate(srate);
 }
 extern "C"
 JNIEXPORT jdouble JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_getInputOutputSampleRatio(JNIEnv *env, jobject thiz,
+Java_com_tianscar_soundtouch4android_SoundTouch_getInputOutputSampleRatio(JNIEnv *env, jobject thiz,
                                                                 jlong handle) {
     auto *ptr = (SoundTouch*)handle;
     return ptr->getInputOutputSampleRatio();
 }
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_getUnprocessedSampleCount(JNIEnv *env, jobject thiz,
+Java_com_tianscar_soundtouch4android_SoundTouch_getUnprocessedSampleCount(JNIEnv *env, jobject thiz,
                                                                  jlong handle) {
     auto *ptr = (SoundTouch*)handle;
     return ptr->numUnprocessedSamples();
 }
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_getSampleCount(JNIEnv *env, jobject thiz, jlong handle) {
+Java_com_tianscar_soundtouch4android_SoundTouch_getSampleCount(JNIEnv *env, jobject thiz, jlong handle) {
     auto *ptr = (SoundTouch*)handle;
     return ptr->numSamples();
 }
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_adjustAmountOfSamples(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_adjustAmountOfSamples(JNIEnv *env, jobject thiz, jlong handle,
                                                             jint samples_count) {
     auto *ptr = (SoundTouch*)handle;
     return ptr->adjustAmountOfSamples(samples_count);
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_putSamples(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_putSamples(JNIEnv *env, jobject thiz, jlong handle,
                                                  jshortArray samples, jint sample_count) {
     auto *ptr = (SoundTouch*)handle;
     jshort *temp;
@@ -86,7 +86,7 @@ Java_com_ansdoship_carbonizedcoil_media_SoundTouch_putSamples(JNIEnv *env, jobje
 }
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_receiveSamples1(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_receiveSamples1(JNIEnv *env, jobject thiz, jlong handle,
                                                       jshortArray sample_buffer, jint max_samples) {
     auto *ptr = (SoundTouch*)handle;
     jshort *temp;
@@ -99,54 +99,54 @@ Java_com_ansdoship_carbonizedcoil_media_SoundTouch_receiveSamples1(JNIEnv *env, 
 }
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_receiveSamples2(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_receiveSamples2(JNIEnv *env, jobject thiz, jlong handle,
                                                       jint max_samples) {
     auto *ptr = (SoundTouch*)handle;
     return ptr->receiveSamples(max_samples);
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_flush(JNIEnv *env, jobject thiz, jlong handle) {
+Java_com_tianscar_soundtouch4android_SoundTouch_flush(JNIEnv *env, jobject thiz, jlong handle) {
     auto *ptr = (SoundTouch*)handle;
     ptr->flush();
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_clear(JNIEnv *env, jobject thiz, jlong handle) {
+Java_com_tianscar_soundtouch4android_SoundTouch_clear(JNIEnv *env, jobject thiz, jlong handle) {
     auto *ptr = (SoundTouch*)handle;
     ptr->clear();
 }
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_isEmpty(JNIEnv *env, jobject thiz, jlong handle) {
+Java_com_tianscar_soundtouch4android_SoundTouch_isEmpty(JNIEnv *env, jobject thiz, jlong handle) {
     auto *ptr = (SoundTouch*)handle;
     return ptr->isEmpty();
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setRate(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_setRate(JNIEnv *env, jobject thiz, jlong handle,
                                               jdouble rate) {
     auto *ptr = (SoundTouch*)handle;
     ptr->setRate(rate);
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setTempo(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_setTempo(JNIEnv *env, jobject thiz, jlong handle,
                                                jdouble tempo) {
     auto *ptr = (SoundTouch*)handle;
     ptr->setTempo(tempo);
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setRateChange(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_setRateChange(JNIEnv *env, jobject thiz, jlong handle,
                                                     jdouble rate) {
     auto *ptr = (SoundTouch*)handle;
     ptr->setRateChange(rate);
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setTempoChange(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_setTempoChange(JNIEnv *env, jobject thiz, jlong handle,
                                                      jdouble tempo) {
     auto *ptr = (SoundTouch*)handle;
     ptr->setTempoChange(tempo);
@@ -154,28 +154,28 @@ Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setTempoChange(JNIEnv *env, j
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setPitch(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_setPitch(JNIEnv *env, jobject thiz, jlong handle,
                                                jdouble pitch) {
     auto *ptr = (SoundTouch*)handle;
     ptr->setPitch(pitch);
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setPitchOctaves(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_setPitchOctaves(JNIEnv *env, jobject thiz, jlong handle,
                                                       jdouble pitch) {
     auto *ptr = (SoundTouch*)handle;
     ptr->setPitchOctaves(pitch);
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setPitchSemiTones1(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_setPitchSemiTones1(JNIEnv *env, jobject thiz, jlong handle,
                                                          jint pitch) {
     auto *ptr = (SoundTouch*)handle;
     ptr->setPitchSemiTones(pitch);
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setPitchSemiTones2(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_setPitchSemiTones2(JNIEnv *env, jobject thiz, jlong handle,
                                                          jdouble pitch) {
     auto *ptr = (SoundTouch*)handle;
     ptr->setPitchSemiTones(pitch);
@@ -183,7 +183,7 @@ Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setPitchSemiTones2(JNIEnv *en
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setSettingValue(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_setSettingValue(JNIEnv *env, jobject thiz, jlong handle,
                                                       jint setting_id, jint value) {
     auto *ptr = (SoundTouch*)handle;
     if (ptr->setSetting(setting_id, value)) {
@@ -195,7 +195,7 @@ Java_com_ansdoship_carbonizedcoil_media_SoundTouch_setSettingValue(JNIEnv *env, 
 }
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_ansdoship_carbonizedcoil_media_SoundTouch_getSettingValue(JNIEnv *env, jobject thiz, jlong handle,
+Java_com_tianscar_soundtouch4android_SoundTouch_getSettingValue(JNIEnv *env, jobject thiz, jlong handle,
                                                       jint setting_id) {
     auto *ptr = (SoundTouch*)handle;
     return ptr->getSetting(setting_id);
