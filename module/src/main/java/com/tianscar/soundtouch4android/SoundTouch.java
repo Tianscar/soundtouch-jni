@@ -1,7 +1,6 @@
 package com.tianscar.soundtouch4android;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * The SoundTouch class that invokes native SoundTouch routines through the JNI
