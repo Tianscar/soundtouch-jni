@@ -1,5 +1,8 @@
 package com.tianscar.soundtouch4android;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * The SoundTouch class that invokes native SoundTouch routines through the JNI
  * interface.
@@ -481,6 +484,20 @@ public final class SoundTouch {
                     "The native instance has been released. " +
                     "Please create a new SoundTouch object for use.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SoundTouch)) return false;
+        SoundTouch that = (SoundTouch) o;
+        return handle == that.handle &&
+                isReleased() == that.isReleased();
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(new Object[] {handle, isReleased()});
     }
 
 }
