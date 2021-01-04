@@ -7,15 +7,6 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
-    sourceSets {
-        main {
-            manifest.srcFile 'src/main/AndroidManifest.xml'
-            java.srcDirs = ['src/main/java']
-            jniLibs.srcDirs = ['libs']
-        }
-
-    }
-
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 30
@@ -34,11 +25,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    ndkVersion = "21.1.6352462"
+    ndkVersion = '21.1.6352462'
 }
 
 dependencies {

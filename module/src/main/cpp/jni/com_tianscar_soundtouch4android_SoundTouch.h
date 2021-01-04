@@ -7,10 +7,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#undef com_tianscar_soundtouch4android_SoundTouch_SOUNDTOUCH_CHANNEL_MONO
-#define com_tianscar_soundtouch4android_SoundTouch_SOUNDTOUCH_CHANNEL_MONO 1L
-#undef com_tianscar_soundtouch4android_SoundTouch_SOUNDTOUCH_CHANNEL_STEREO
-#define com_tianscar_soundtouch4android_SoundTouch_SOUNDTOUCH_CHANNEL_STEREO 2L
+#undef com_tianscar_soundtouch4android_SoundTouch_SOUNDTOUCH_VERSION_ID
+#define com_tianscar_soundtouch4android_SoundTouch_SOUNDTOUCH_VERSION_ID 20200L
 #undef com_tianscar_soundtouch4android_SoundTouch_SOUNDTOUCH_MAX_CHANNELS
 #define com_tianscar_soundtouch4android_SoundTouch_SOUNDTOUCH_MAX_CHANNELS 16L
 #undef com_tianscar_soundtouch4android_SoundTouch_SETTING_USE_AA_FILTER
@@ -130,18 +128,18 @@ JNIEXPORT jdouble JNICALL Java_com_tianscar_soundtouch4android_SoundTouch_getInp
 /*
  * Class:     com_tianscar_soundtouch4android_SoundTouch
  * Method:    putSamples
- * Signature: (J[FI)V
+ * Signature: (J[SI)V
  */
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4android_SoundTouch_putSamples
-  (JNIEnv *, jobject, jlong, jfloatArray, jint);
+  (JNIEnv *, jobject, jlong, jshortArray, jint);
 
 /*
  * Class:     com_tianscar_soundtouch4android_SoundTouch
  * Method:    receiveSamples1
- * Signature: (J[FI)I
+ * Signature: (J[SI)I
  */
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4android_SoundTouch_receiveSamples1
-  (JNIEnv *, jobject, jlong, jfloatArray, jint);
+  (JNIEnv *, jobject, jlong, jshortArray, jint);
 
 /*
  * Class:     com_tianscar_soundtouch4android_SoundTouch
@@ -230,30 +228,6 @@ JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4android_SoundTouch_setSettin
  */
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4android_SoundTouch_getSettingValue
   (JNIEnv *, jobject, jlong, jint);
-
-/*
- * Class:     com_tianscar_soundtouch4android_SoundTouch
- * Method:    getVersionId
- * Signature: ()I
- */
-JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4android_SoundTouch_getVersionId
-  (JNIEnv *, jclass);
-
-/*
- * Class:     com_tianscar_soundtouch4android_SoundTouch
- * Method:    getVersionString
- * Signature: ()Ljava/lang/String;
- */
-JNIEXPORT jstring JNICALL Java_com_tianscar_soundtouch4android_SoundTouch_getVersionString
-  (JNIEnv *, jclass);
-
-/*
- * Class:     com_tianscar_soundtouch4android_SoundTouch
- * Method:    getErrorString
- * Signature: ()Ljava/lang/String;
- */
-JNIEXPORT jstring JNICALL Java_com_tianscar_soundtouch4android_SoundTouch_getErrorString
-  (JNIEnv *, jclass);
 
 #ifdef __cplusplus
 }
