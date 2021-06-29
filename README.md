@@ -8,7 +8,7 @@ JavaDoc: https://tianscar.github.io/SoundTouch4Android/
 
 SoundTouch version: 2.2
 
-SoundTouch WWW: http://www.surina.net/soundtouch
+SoundTouch website: http://www.surina.net/soundtouch
 
 # To get a Git project into your build (gradle):
 
