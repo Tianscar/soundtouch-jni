@@ -2,7 +2,7 @@
 
 The JNI-packaged SoundTouch repository which can be used on the Android platform.
 
-The basic functions is fully encapsulated and PCM data can be processed directly.
+The basic functions are fully encapsulated and PCM data can be processed directly.
 
 JavaDoc: https://tianscar.github.io/SoundTouch4Android/
 
