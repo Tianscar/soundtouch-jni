@@ -23,5 +23,5 @@
  *
  */
 
-include ':module'
+include ':library'
 rootProject.name = "SoundTouch4Android"
