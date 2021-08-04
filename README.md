@@ -28,3 +28,8 @@ dependencies {
 	implementation 'com.github.Tianscar:SoundTouch4Android:1.0.3.1'
 }
 ```
+
+
+# License
+[MIT](https://github.com/Tianscar/SoundTouch4Android/blob/master/LICENSE) © Tianscar
+[LGPL-2.1](https://github.com/Tianscar/SoundTouch4Android/blob/master/SoundTouch-LICENSE) © Olli Parviainen
