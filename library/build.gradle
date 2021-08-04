@@ -32,7 +32,7 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 31
-        versionCode 4
+        versionCode 5
         versionName "1.0.3.1"
         consumerProguardFiles "consumer-rules.pro"
         externalNativeBuild {

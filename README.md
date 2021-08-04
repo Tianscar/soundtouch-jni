@@ -27,6 +27,6 @@ allprojects {
 ```
 dependencies {
 	...
-	implementation 'com.github.Tianscar:SoundTouch4Android:1.0.3'
+	implementation 'com.github.Tianscar:SoundTouch4Android:1.0.3.1'
 }
 ```
