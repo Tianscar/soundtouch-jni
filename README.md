@@ -31,5 +31,5 @@ dependencies {
 
 
 # License
-[MIT](https://github.com/Tianscar/SoundTouch4Android/blob/master/LICENSE) © Tianscar
+[MIT](https://github.com/Tianscar/SoundTouch4Android/blob/master/LICENSE) © Tianscar<br/>
 [LGPL-2.1](https://github.com/Tianscar/SoundTouch4Android/blob/master/SoundTouch-LICENSE) © Olli Parviainen
