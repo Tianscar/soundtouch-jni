@@ -1,35 +1,13 @@
-# SoundTouch4Android
+# soundtouch4j
 
-The **JNI-packaged SoundTouch** repository which can be used on the **Android** platform.<br/>
-The basic functions are **fully encapsulated** and **PCM data can be processed directly**.
+JNI wrapper for SoundTouch. Can be used on both J2SE and Android.
 
-JavaDoc: https://tianscar.github.io/SoundTouch4Android/
+SoundTouch version: 2.3.1  
+SoundTouch's website: https://www.surina.net/soundtouch
 
-SoundTouch version: 2.2<br/>
-SoundTouch website: http://www.surina.net/soundtouch
+## Usage
+docs: https://docs.tianscar.com/soundtouch4j
 
-# To get a Git project into your build (gradle):
-
-* Step 1. Add the JitPack repository to your build file<br/>
-Add it in your root build.gradle at the end of repositories:<br/>
-```
-allprojects {
-        repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
-}
-```
-
-* Step 2. Add the dependency:<br/>
-```
-dependencies {
-	...
-	implementation 'com.github.Tianscar:SoundTouch4Android:1.0.3.1'
-}
-```
-
-
-# License
-[MIT](https://github.com/Tianscar/SoundTouch4Android/blob/master/LICENSE) © Tianscar<br/>
-[LGPL-2.1](https://github.com/Tianscar/SoundTouch4Android/blob/master/SoundTouch-LICENSE) © Olli Parviainen
+## License
+soundtouch4j - [MIT](https://github.com/Tianscar/soundtouch4j/blob/main/LICENSE) (c) Tianscar  
+SoundTouch - [LGPL-2.1](https://github.com/Tianscar/soundtouch4j/blob/main/SoundTouch-LICENSE) (c) Olli Parviainen
