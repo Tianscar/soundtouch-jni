@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.tianscar.soundtouch4j","l":"BPMDetector"},{"p":"com.tianscar.soundtouch4j","l":"SoundTouch"}];updateSearchResults();

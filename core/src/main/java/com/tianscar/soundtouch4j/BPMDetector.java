@@ -30,20 +30,21 @@ import static com.tianscar.soundtouch4j.Util.loadLibrary;
 /**
  * The BPMDetector class that invokes native BPMDetector routines through the JNI
  * interface.
- * <p></p>
+ * <br/><br/>
  * <b>
  * Beats-per-minute (BPM) detection routine.
  * </b><br/>
  * The beat detection algorithm works as follows:
- * <ul><li>
+ * <ul>
+ * <li>
  * Use function 'inputSamples' to input a chunks of samples to the class for
  *   analysis. It's a good idea to enter a large sound file or stream in smallish
- *   chunks of around few kilosamples in order not to extinguish too much RAM memory.
- * </li>
+ *   chunks of around few kilosamples in order not to extinguish too much RAM memory.</li>
+ * <li>
  * Input sound data is decimated to approx 500 Hz to reduce calculation burden,
  *   which is basically ok as low (bass) frequencies mostly determine the beat rate.
  *   Simple averaging is used for anti-alias filtering because the resulting signal
- *   quality isn't of that high importance.
+ *   quality isn't of that high importance.</li>
  * <li>
  * Decimated sound data is enveloped, i.e. the amplitude shape is detected by
  *   taking absolute value that's smoothed by sliding average. Signal levels that
@@ -55,8 +56,7 @@ import static com.tianscar.soundtouch4j.Util.loadLibrary;
  * <li>
  * After whole sound data file has been analyzed as above, the bpm level is
  *   detected by function 'getBpm' that finds the highest peak of the autocorrelation
- *   function, calculates it's precise location and converts this reading to bpm's.</li>
- * </ul>
+ *   function, calculates it's precise location and converts this reading to bpm's.</li></ul>
  *
  * @author Tianscar
  */
@@ -83,7 +83,11 @@ public final class BPMDetector {
         return disposed;
     }
 
-    /** Create a new instance of BPM detector. */
+    /** Create a new instance of BPM detector.
+     *
+     * @param numChannels Number of channels in sample data.
+     * @param sampleRate Sample rate in Hz.
+     */
     public BPMDetector(int numChannels, int sampleRate) {
         handle = createInstance(numChannels, sampleRate);
         disposed = false;
@@ -101,7 +105,7 @@ public final class BPMDetector {
 
     /** Feed 'numSamples' sample frames from 'samples' into the BPM detector.
      *
-     * @param samples Pointer to sample buffer.
+     * @param samples Sample buffer array.
      * @param numSamples Number of samples in buffer. Notice that in case of stereo-sound a single sample
      *                   contains data for both channels.
      */
@@ -113,7 +117,7 @@ public final class BPMDetector {
     /** Feed 'numSamples' sample frames from 'samples' into the BPM detector.
      * 16bit int sample format version.
      *
-     * @param samples Pointer to sample buffer.
+     * @param samples Sample buffer array.
      * @param numSamples Number of samples in buffer. Notice that in case of stereo-sound a single sample
      *                   contains data for both channels.
      */

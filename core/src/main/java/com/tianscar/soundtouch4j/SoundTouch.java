@@ -32,7 +32,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * The SoundTouch class that invokes native SoundTouch routines through the JNI
  * interface.
- * <p></p>
+ * <br/><br/>
  * <b>
  * SoundTouch - main class for tempo/pitch/rate adjusting routines.
  * </b><br/>
@@ -68,8 +68,7 @@ import static java.util.Objects.requireNonNull;
  *   pitch) and 'RateTransposer' for changing the playback rate (that is, both
  *   tempo and pitch in the same ratio) of the sound. The third available control
  *   'pitch' (change pitch but maintain tempo) is produced by a combination of
- *   combining the two other controls.</li>
- * </ul>
+ *   combining the two other controls.</li></ul>
  * <a href="https://www.surina.net/soundtouch">SoundTouch WWW</a>
  *
  * @author Tianscar
@@ -116,10 +115,10 @@ public final class SoundTouch {
      * This value gives approximate value of how many input samples you'll need to
      * feed into SoundTouch after initial buffering to get out a new batch of
      * output samples.
-     * <p></p>
+     * <br/><br/>
      * This value does not include initial buffering at beginning of a new processing
      * stream, use SETTING_INITIAL_LATENCY to get the initial buffering size.
-     * <p></p>
+     * <br/><br/>
      * Notices:
      * - This is read-only parameter, i.e. setSetting ignores this parameter
      * - This parameter value is not constant but change depending on
@@ -130,7 +129,7 @@ public final class SoundTouch {
     /** Call "getSetting" with this ID to query nominal average processing output
      * size in samples. This value tells approcimate value how many output samples
      * SoundTouch outputs once it does DSP processing run for a batch of input samples.
-     * <p></p>
+     * <br/><br/>
      * Notices:
      * - This is read-only parameter, i.e. setSetting ignores this parameter
      * - This parameter value is not constant but change depending on
@@ -140,26 +139,26 @@ public final class SoundTouch {
     /** Call "getSetting" with this ID to query initial processing latency, i.e.
      * approx. how many samples you'll need to enter to SoundTouch pipeline before
      * you can expect to get first batch of ready output samples out.
-     * <p></p>
+     * <br/><br/>
      * After the first output batch, you can then expect to get approx.
      * SETTING_NOMINAL_OUTPUT_SEQUENCE ready samples out for every
      * SETTING_NOMINAL_INPUT_SEQUENCE samples that you enter into SoundTouch.
-     * <p></p>
+     * <br/><br/>
      * Example:
      *     processing with parameter -tempo=5
      *     => initial latency = 5509 samples
      *        input sequence  = 4167 samples
      *        output sequence = 3969 samples
-     * <p></p>
+     * <br/><br/>
      * Accordingly, you can expect to feed in approx. 5509 samples at beginning of
      * the stream, and then you'll get out the first 3969 samples. After that, for
      * every approx. 4167 samples that you'll put in, you'll receive again approx.
      * 3969 samples out.
-     * <p></p>
+     * <br/><br/>
      * This also means that average latency during stream processing is
      * INITIAL_LATENCY-OUTPUT_SEQUENCE/2, in the above example case 5509-3969/2
      * = 3524 samples
-     * <p></p>
+     * <br/><br/>
      * Notices:
      * - This is read-only parameter, i.e. setSetting ignores this parameter
      * - This parameter value is not constant but change depending on
@@ -203,18 +202,26 @@ public final class SoundTouch {
     }
     private static native void destroyInstance(long h);
 
-    /** Get SoundTouch library version string. */
+    /** Get SoundTouch library version string.
+     *
+     * @return the SoundTouch library version string
+     */
     public static String getVersionString() {
         return SOUNDTOUCH_VERSION;
     }
 
-    /** Get SoundTouch library version id. */
+    /** Get SoundTouch library version id.
+     *
+     * @return the SoundTouch library version id
+     */
     public static long getVersionId() {
         return SOUNDTOUCH_VERSION_ID;
     }
 
     /** Sets new rate control value. Normal rate = 1.0, smaller values
      * represent slower rate, larger faster rates.
+     *
+     * @param newRate the new rate
      */
     public void setRate(float newRate) {
         setRate(handle, newRate);
@@ -223,6 +230,8 @@ public final class SoundTouch {
 
     /** Sets new tempo control value. Normal tempo = 1.0, smaller values
      * represent slower tempo, larger faster tempo.
+     *
+     * @param newTempo the new tempo
      */
     public void setTempo(float newTempo) {
         setTempo(handle, newTempo);
@@ -231,6 +240,8 @@ public final class SoundTouch {
 
     /** Sets new rate control value as a difference in percents compared
      * to the original rate (-50 .. +100 %);
+     *
+     * @param newRate the new rate change radio
      */
     public void setRateChange(float newRate) {
         setRateChange(handle, newRate);
@@ -239,6 +250,8 @@ public final class SoundTouch {
 
     /** Sets new tempo control value as a difference in percents compared
      * to the original tempo (-50 .. +100 %);
+     *
+     * @param newTempo the new tempo change radio
      */
     public void setTempoChange(float newTempo) {
         setTempoChange(handle, newTempo);
@@ -247,6 +260,8 @@ public final class SoundTouch {
 
     /** Sets new pitch control value. Original pitch = 1.0, smaller values
      * represent lower pitches, larger values higher pitch.
+     *
+     * @param newPitch the new pitch
      */
     public void setPitch(float newPitch) {
         setPitch(handle, newPitch);
@@ -255,6 +270,8 @@ public final class SoundTouch {
 
     /** Sets pitch change in octaves compared to the original pitch
      * (-1.00 .. +1.00);
+     *
+     * @param newPitch the new pitch octaves
      */
     public void setPitchOctaves(float newPitch) {
         setPitchOctaves(handle, newPitch);
@@ -263,20 +280,28 @@ public final class SoundTouch {
 
     /** Sets pitch change in semi-tones compared to the original pitch
      * (-12 .. +12);
+     *
+     * @param newPitch the new pitch semi-tones
      */
     public void setPitchSemiTones(float newPitch) {
         setPitchSemiTones(handle, newPitch);
     }
     private static native void setPitchSemiTones(long h, float newPitch);
 
-    /** Sets the number of channels, 1 = mono, 2 = stereo, n = multichannel */
+    /** Sets the number of channels, 1 = mono, 2 = stereo, n = multichannel
+     *
+     * @param numChannels Number of channels.
+     */
     public void setChannels(long numChannels) {
         checkUnsignedInt(numChannels);
         setChannels(handle, numChannels);
     }
     private static native void setChannels(long h, long numChannels);
 
-    /** Sets sample rate. */
+    /** Sets sample rate.
+     *
+     * @param srate Sample rate in Hz.
+     */
     public void setSampleRate(long srate) {
         checkUnsignedInt(srate);
         setSampleRate(handle, srate);
@@ -285,7 +310,7 @@ public final class SoundTouch {
 
     /** Flushes the last samples from the processing pipeline to the output.
      * Clears also the internal processing buffers.
-     * <p></p>
+     * <br/><br/>
      * Note: This function is meant for extracting the last samples of a sound
      * stream. This function may introduce additional blank samples in the end
      * of the sound stream, and thus it's not recommended to call this function
@@ -300,7 +325,7 @@ public final class SoundTouch {
      * the input of the object. Notice that sample rate _has_to_ be set before
      * calling this function, otherwise throws a runtime_error exception.
      *
-     * @param samples Pointer to sample buffer.
+     * @param samples Sample buffer array.
      * @param numSamples Number of sample frames in buffer. Notice that in case of multi-channel sound a single
      *                   sample frame contains data for all channels.
      */
@@ -314,7 +339,7 @@ public final class SoundTouch {
     /** int16 version of putSamples(): This accept int16 (short) sample data
      * and internally converts it to float format before processing.
      *
-     * @param samples Pointer to sample buffer.
+     * @param samples Sample buffer array.
      * @param numSamples Number of sample frames in buffer. Notice that in case of multi-channel sound a single
      *                   sample frame contains data for all channels.
      */
@@ -371,7 +396,7 @@ public final class SoundTouch {
 
     /** Adjusts book-keeping so that given number of samples are removed from beginning of the
      * sample buffer without copying them anywhere.
-     * <p></p>
+     * <br/><br/>
      * Used to reduce the number of samples in the buffer when accessing the sample buffer directly
      * with 'ptrBegin' function.
      *
