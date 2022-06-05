@@ -37,4 +37,4 @@ endif()
 add_library(soundtouchjni SHARED ../../../../core/src/main/cpp/soundtouchjni.c ../../../../core/src/main/cpp/bpmdetectorjni.c)
 
 # Dynamic links
-target_link_libraries(soundtouchjni ${SoundTouch})
+target_link_libraries(soundtouchjni ../../../src/main/resources/windows-x86_64/SoundTouchDLL.dll)
