@@ -1,3 +1,28 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2021-2022 Tianscar
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ */
+
 package com.tianscar.soundtouch4j;
 
 import static com.tianscar.soundtouch4j.Util.checkUnsignedInt;
@@ -7,6 +32,45 @@ import static java.util.Objects.requireNonNull;
 /**
  * The SoundTouch class that invokes native SoundTouch routines through the JNI
  * interface.
+ * <p></p>
+ * <b>
+ * SoundTouch - main class for tempo/pitch/rate adjusting routines.
+ * </b><br/>
+ * Notes:
+ * <ul><li>
+ * Initialize the SoundTouch object instance by setting up the sound stream
+ *   parameters with functions 'setSampleRate' and 'setChannels', then set
+ *   desired tempo/pitch/rate settings with the corresponding functions.</li>
+ * <li>
+ * The SoundTouch class behaves like a first-in-first-out pipeline: The
+ *   samples that are to be processed are fed into one of the pipe by calling
+ *   function 'putSamples', while the ready processed samples can be read
+ *   from the other end of the pipeline with function 'receiveSamples'.</li>
+ * <li>
+ * The SoundTouch processing classes require certain sized 'batches' of
+ *   samples in order to process the sound. For this reason the classes buffer
+ *   incoming samples until there are enough of samples available for
+ *   processing, then they carry out the processing step and consequently
+ *   make the processed samples available for outputting.</li>
+ * <li>
+ * For the above reason, the processing routines introduce a certain
+ *   'latency' between the input and output, so that the samples input to
+ *   SoundTouch may not be immediately available in the output, and neither
+ *   the amount of outputtable samples may not immediately be in direct
+ *   relationship with the amount of previously input samples.</li>
+ * <li>
+ * The tempo/pitch/rate control parameters can be altered during processing.
+ *   Please notice though that they aren't currently protected by semaphores,
+ *   so in multi-thread application external semaphore protection may be
+ *   required.</li>
+ * <li>
+ * This class utilizes classes 'TDStretch' for tempo change (without modifying
+ *   pitch) and 'RateTransposer' for changing the playback rate (that is, both
+ *   tempo and pitch in the same ratio) of the sound. The third available control
+ *   'pitch' (change pitch but maintain tempo) is produced by a combination of
+ *   combining the two other controls.</li>
+ * </ul>
+ * <a href="https://www.surina.net/soundtouch">SoundTouch WWW</a>
  *
  * @author Tianscar
  */

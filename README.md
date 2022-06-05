@@ -2,7 +2,7 @@
 
 Java bindings for [SoundTouch](https://www.surina.net/soundtouch). Can be used on both J2SE and Android.
 
-soundtouch4j version: 1.0.4  
+SoundTouch4J version: 1.0.4  
 SoundTouch version: 2.3.1
 
 ## Usage
