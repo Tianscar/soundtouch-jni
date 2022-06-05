@@ -10,15 +10,27 @@ include_directories(${JNI_INCLUDE_DIRS})
 
 # SoundTouch
 include_directories(../../../../core/src/main/cpp/include)
-if (WIN32)
-    find_library(SoundTouch SoundTouchDLL ../../../src/main/resources/windows-x86
-            ../../../src/main/resources/windows-x86_64 ../../../src/main/resources/windows-aarch64)
-elseif(APPLE)
-    find_library(SoundTouch SoundTouchDLL ../../../src/main/resources/macos-x86_64
-            ../../../src/main/resources/macos-arm64)
-elseif(UNIX)
-    find_library(SoundTouch SoundTouchDLL ../../../src/main/resources/linux-amd64
-            ../../../src/main/resources/linux-i386)
+if (${CMAKE_SYSTEM_PROCESSOR} MATCHES "X64" OR ${CMAKE_SYSTEM_PROCESSOR} MATCHES "AMD64")
+    if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+        find_library(SoundTouch SoundTouchDLL ../../../src/main/resources/windows-x86_64)
+    elseif(${CMAKE_SYSTEM_NAME} MATCHES "Mac")
+        find_library(SoundTouch SoundTouchDLL ../../../src/main/resources/macos-x86_64)
+    elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+        find_library(SoundTouch SoundTouchDLL ../../../src/main/resources/linux-amd64)
+    endif()
+elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "X86")
+    if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+        find_library(SoundTouch SoundTouchDLL ../../../src/main/resources/windows-x86)
+    elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+        find_library(SoundTouch SoundTouchDLL ../../../src/main/resources/linux-i386)
+    endif()
+elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "ARM64" OR ${CMAKE_SYSTEM_PROCESSOR} MATCHES "AARCH64")
+    if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+        find_library(SoundTouch SoundTouchDLL ../../../src/main/resources/windows-aarch64)
+    elseif(${CMAKE_SYSTEM_NAME} MATCHES "Mac")
+        find_library(SoundTouch SoundTouchDLL ../../../src/main/resources/macos-arm64)
+    endif()
+elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "ARM")
 endif()
 
 # Source code

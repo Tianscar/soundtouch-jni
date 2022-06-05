@@ -30,69 +30,69 @@ extern "C" {
 
 JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_createInstance
         (JNIEnv *env, jclass clazz) {
-    return soundtouch_createInstance();
+    return (jlong) soundtouch_createInstance();
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_destroyInstance
         (JNIEnv *env, jclass clazz, jlong h) {
-    soundtouch_destroyInstance(h);
+    soundtouch_destroyInstance((HANDLE) h);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setRate
         (JNIEnv *env, jclass clazz, jlong h, jfloat newRate) {
-    soundtouch_setRate(h, newRate);
+    soundtouch_setRate((HANDLE) h, newRate);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setTempo
         (JNIEnv *env, jclass clazz, jlong h, jfloat newTempo) {
-    soundtouch_setTempo(h, newTempo);
+    soundtouch_setTempo((HANDLE) h, newTempo);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setRateChange
         (JNIEnv *env, jclass clazz, jlong h, jfloat newRate) {
-    soundtouch_setRateChange(h, newRate);
+    soundtouch_setRateChange((HANDLE) h, newRate);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setTempoChange
         (JNIEnv *env, jclass clazz, jlong h, jfloat newTempo) {
-    soundtouch_setTempoChange(h, newTempo);
+    soundtouch_setTempoChange((HANDLE) h, newTempo);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setPitch
         (JNIEnv *env, jclass clazz, jlong h, jfloat newPitch) {
-    soundtouch_setPitch(h, newPitch);
+    soundtouch_setPitch((HANDLE) h, newPitch);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setPitchOctaves
         (JNIEnv *env, jclass clazz, jlong h, jfloat newPitch) {
-    soundtouch_setPitchOctaves(h, newPitch);
+    soundtouch_setPitchOctaves((HANDLE) h, newPitch);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setPitchSemiTones
         (JNIEnv *env, jclass clazz, jlong h, jfloat newPitch) {
-    soundtouch_setPitchSemiTones(h, newPitch);
+    soundtouch_setPitchSemiTones((HANDLE) h, newPitch);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setChannels
         (JNIEnv *env, jclass clazz, jlong h, jlong numChannels) {
-    soundtouch_setChannels(h, numChannels);
+    soundtouch_setChannels((HANDLE) h, numChannels);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setSampleRate
         (JNIEnv *env, jclass clazz, jlong h, jlong srate) {
-    soundtouch_setSampleRate(h, srate);
+    soundtouch_setSampleRate((HANDLE) h, srate);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_flush
         (JNIEnv *env, jclass clazz, jlong h) {
-    soundtouch_flush(h);
+    soundtouch_flush((HANDLE) h);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_putSamples
         (JNIEnv *env, jclass clazz, jlong h, jfloatArray samples, jint numSamples) {
     jfloat *temp;
     temp = (*env)->GetFloatArrayElements(env, samples, NULL);
-    soundtouch_putSamples(h, temp, numSamples);
+    soundtouch_putSamples((HANDLE) h, temp, numSamples);
     (*env)->ReleaseFloatArrayElements(env, samples, temp, 0);
     (*env)->DeleteLocalRef(env, samples);
 }
@@ -101,35 +101,35 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_putSamples_1i16
         (JNIEnv *env, jclass clazz, jlong h, jshortArray samples, jint numSamples) {
     jshort *temp;
     temp = (*env)->GetShortArrayElements(env, samples, NULL);
-    soundtouch_putSamples_i16(h, temp, numSamples);
+    soundtouch_putSamples_i16((HANDLE) h, temp, numSamples);
     (*env)->ReleaseShortArrayElements(env, samples, temp, 0);
     (*env)->DeleteLocalRef(env, samples);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_clear
         (JNIEnv *env, jclass clazz, jlong h) {
-    soundtouch_clear(h);
+    soundtouch_clear((HANDLE) h);
 }
 
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setSetting
         (JNIEnv *env, jclass clazz, jlong h, jint settingId, jint value) {
-    soundtouch_setSetting(h, settingId, value);
+    soundtouch_setSetting((HANDLE) h, settingId, value);
 }
 
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_getSetting
         (JNIEnv *env, jclass clazz, jlong h, jint settingId) {
-    return soundtouch_getSetting(h, settingId);
+    return soundtouch_getSetting((HANDLE) h, settingId);
 }
 
 JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_numUnprocessedSamples
         (JNIEnv *env, jclass clazz, jlong h) {
-    return soundtouch_numUnprocessedSamples(h);
+    return soundtouch_numUnprocessedSamples((HANDLE) h);
 }
 
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_receiveSamples
         (JNIEnv *env, jclass clazz, jlong h, jfloatArray outBuffer, jint maxSamples) {
     jfloat *temp;
-    jsize length = (jsize) soundtouch_receiveSamples(h, temp, maxSamples);
+    jsize length = (jsize) soundtouch_receiveSamples((HANDLE) h, temp, maxSamples);
     (*env)->SetFloatArrayRegion(env, outBuffer, 0, length, temp);
     return length;
 }
@@ -137,19 +137,19 @@ JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_receiveSamples
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_receiveSamples_1i16
         (JNIEnv *env, jclass clazz, jlong h, jshortArray outBuffer, jint maxSamples) {
     jshort *temp;
-    jsize length = (jsize) soundtouch_receiveSamples_i16(h, temp, maxSamples);
+    jsize length = (jsize) soundtouch_receiveSamples_i16((HANDLE) h, temp, maxSamples);
     (*env)->SetShortArrayRegion(env, outBuffer, 0, length, temp);
     return length;
 }
 
 JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_numSamples
         (JNIEnv *env, jclass clazz, jlong h) {
-    return soundtouch_numSamples(h);
+    return soundtouch_numSamples((HANDLE) h);
 }
 
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_isEmpty
         (JNIEnv *env, jclass clazz, jlong h) {
-    soundtouch_isEmpty(h);
+    soundtouch_isEmpty((HANDLE) h);
 }
 
 #ifdef __cplusplus
