@@ -7,6 +7,26 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#undef com_tianscar_soundtouch4j_SoundTouch_SOUNDTOUCH_VERSION_ID
+#define com_tianscar_soundtouch4j_SoundTouch_SOUNDTOUCH_VERSION_ID 20301LL
+#undef com_tianscar_soundtouch4j_SoundTouch_SETTING_USE_AA_FILTER
+#define com_tianscar_soundtouch4j_SoundTouch_SETTING_USE_AA_FILTER 0L
+#undef com_tianscar_soundtouch4j_SoundTouch_SETTING_AA_FILTER_LENGTH
+#define com_tianscar_soundtouch4j_SoundTouch_SETTING_AA_FILTER_LENGTH 1L
+#undef com_tianscar_soundtouch4j_SoundTouch_SETTING_USE_QUICKSEEK
+#define com_tianscar_soundtouch4j_SoundTouch_SETTING_USE_QUICKSEEK 2L
+#undef com_tianscar_soundtouch4j_SoundTouch_SETTING_SEQUENCE_MS
+#define com_tianscar_soundtouch4j_SoundTouch_SETTING_SEQUENCE_MS 3L
+#undef com_tianscar_soundtouch4j_SoundTouch_SETTING_SEEKWINDOW_MS
+#define com_tianscar_soundtouch4j_SoundTouch_SETTING_SEEKWINDOW_MS 4L
+#undef com_tianscar_soundtouch4j_SoundTouch_SETTING_OVERLAP_MS
+#define com_tianscar_soundtouch4j_SoundTouch_SETTING_OVERLAP_MS 5L
+#undef com_tianscar_soundtouch4j_SoundTouch_SETTING_NOMINAL_INPUT_SEQUENCE
+#define com_tianscar_soundtouch4j_SoundTouch_SETTING_NOMINAL_INPUT_SEQUENCE 6L
+#undef com_tianscar_soundtouch4j_SoundTouch_SETTING_NOMINAL_OUTPUT_SEQUENCE
+#define com_tianscar_soundtouch4j_SoundTouch_SETTING_NOMINAL_OUTPUT_SEQUENCE 7L
+#undef com_tianscar_soundtouch4j_SoundTouch_SETTING_INITIAL_LATENCY
+#define com_tianscar_soundtouch4j_SoundTouch_SETTING_INITIAL_LATENCY 8L
 /*
  * Class:     com_tianscar_soundtouch4j_SoundTouch
  * Method:    createInstance
@@ -18,9 +38,169 @@ JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_createInstance
 /*
  * Class:     com_tianscar_soundtouch4j_SoundTouch
  * Method:    destroyInstance
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_destroyInstance
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    setRate
+ * Signature: (JF)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setRate
+  (JNIEnv *, jclass, jlong, jfloat);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    setTempo
+ * Signature: (JF)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setTempo
+  (JNIEnv *, jclass, jlong, jfloat);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    setRateChange
+ * Signature: (JF)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setRateChange
+  (JNIEnv *, jclass, jlong, jfloat);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    setTempoChange
+ * Signature: (JF)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setTempoChange
+  (JNIEnv *, jclass, jlong, jfloat);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    setPitch
+ * Signature: (JF)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setPitch
+  (JNIEnv *, jclass, jlong, jfloat);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    setPitchOctaves
+ * Signature: (JF)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setPitchOctaves
+  (JNIEnv *, jclass, jlong, jfloat);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    setPitchSemiTones
+ * Signature: (JF)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setPitchSemiTones
+  (JNIEnv *, jclass, jlong, jfloat);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    setChannels
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setChannels
+  (JNIEnv *, jclass, jlong, jlong);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    setSampleRate
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setSampleRate
+  (JNIEnv *, jclass, jlong, jlong);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    flush
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_flush
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    putSamples
+ * Signature: (J[FI)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_putSamples
+  (JNIEnv *, jclass, jlong, jfloatArray, jint);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    putSamples_i16
+ * Signature: (J[SI)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_putSamples_1i16
+  (JNIEnv *, jclass, jlong, jshortArray, jint);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    clear
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_clear
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    setSetting
+ * Signature: (JII)I
+ */
+JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setSetting
+  (JNIEnv *, jclass, jlong, jint, jint);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    getSetting
+ * Signature: (JI)I
+ */
+JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_getSetting
+  (JNIEnv *, jclass, jlong, jint);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    numUnprocessedSamples
  * Signature: (J)J
  */
-JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_destroyInstance
+JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_numUnprocessedSamples
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    receiveSamples
+ * Signature: (J[FI)I
+ */
+JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_receiveSamples
+  (JNIEnv *, jclass, jlong, jfloatArray, jint);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    receiveSamples_i16
+ * Signature: (J[SI)I
+ */
+JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_receiveSamples_1i16
+  (JNIEnv *, jclass, jlong, jshortArray, jint);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    numSamples
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_numSamples
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_tianscar_soundtouch4j_SoundTouch
+ * Method:    isEmpty
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_isEmpty
   (JNIEnv *, jclass, jlong);
 
 #ifdef __cplusplus

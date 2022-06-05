@@ -44,4 +44,9 @@ bin/
 /android/.cxx
 /android/build
 local.properties
-/.idea/
+
+### J2SE natives
+/j2se/src/main/cpp/cmake-build-debug
+/j2se/src/main/cpp/cmake-build-release
+/j2se/src/main/cpp/cmake-build-relwithdebinfo
+/j2se/src/main/cpp/cmake-build-minsizerel
