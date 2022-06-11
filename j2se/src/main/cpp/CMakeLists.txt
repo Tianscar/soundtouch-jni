@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.22)
-project(soundtouchjni C)
+project(soundtouchjni)
 
 # C standard
 set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 11)
 
 # JNI
 find_package(JNI)
