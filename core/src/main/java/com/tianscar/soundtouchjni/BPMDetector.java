@@ -23,9 +23,9 @@
  *
  */
 
-package com.tianscar.soundtouch4j;
+package com.tianscar.soundtouchjni;
 
-import static com.tianscar.soundtouch4j.Util.loadLibrary;
+import static com.tianscar.soundtouchjni.Util.loadLibrary;
 
 /**
  * The BPMDetector class that invokes native BPMDetector routines through the JNI

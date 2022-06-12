@@ -1,4 +1,4 @@
-rootProject.name = "soundtouch4j"
+rootProject.name = "soundtouchjni"
 
 include ':core'
 include ':j2se'

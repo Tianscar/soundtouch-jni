@@ -4,6 +4,13 @@ project(soundtouchjni CXX)
 # C++ standard
 set(CMAKE_CXX_STANDARD 11)
 
+#
+if(${TARGET_SYSTEM} MATCHES "Windows")
+elseif(${TARGET_SYSTEM} MATCHES "Mac")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -c")
+elseif(${TARGET_SYSTEM} MATCHES "Linux")
+endif()
+
 # JNI
 find_package(JNI)
 include_directories(${JNI_INCLUDE_DIRS})

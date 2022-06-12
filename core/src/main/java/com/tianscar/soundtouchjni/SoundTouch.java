@@ -23,10 +23,8 @@
  *
  */
 
-package com.tianscar.soundtouch4j;
+package com.tianscar.soundtouchjni;
 
-import static com.tianscar.soundtouch4j.Util.checkUnsignedInt;
-import static com.tianscar.soundtouch4j.Util.loadLibrary;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -166,7 +164,7 @@ public final class SoundTouch {
     public static final int SETTING_INITIAL_LATENCY = 8;
 
     static {
-        loadLibrary();
+        Util.loadLibrary();
     }
 
     private volatile long handle;
@@ -293,7 +291,7 @@ public final class SoundTouch {
      * @param numChannels Number of channels.
      */
     public void setChannels(long numChannels) {
-        checkUnsignedInt(numChannels);
+        Util.checkUnsignedInt(numChannels);
         setChannels(handle, numChannels);
     }
     private static native void setChannels(long h, long numChannels);
@@ -303,7 +301,7 @@ public final class SoundTouch {
      * @param srate Sample rate in Hz.
      */
     public void setSampleRate(long srate) {
-        checkUnsignedInt(srate);
+        Util.checkUnsignedInt(srate);
         setSampleRate(handle, srate);
     }
     private static native void setSampleRate(long h, long srate);
@@ -331,7 +329,7 @@ public final class SoundTouch {
      */
     public void putSamples(final float[] samples, int numSamples) {
         requireNonNull(samples, "samples cannot be null.");
-        checkUnsignedInt(numSamples);
+        Util.checkUnsignedInt(numSamples);
         putSamples(handle, samples, numSamples);
     }
     private static native void putSamples(long h, final float[] samples, int numSamples);
@@ -345,7 +343,7 @@ public final class SoundTouch {
      */
     public void putSamplesI16(final short[] samples, int numSamples) {
         requireNonNull(samples, "samples cannot be null.");
-        checkUnsignedInt(numSamples);
+        Util.checkUnsignedInt(numSamples);
         putSamples_i16(handle, samples, numSamples);
     }
     private static native void putSamples_i16(long h, final short[] samples, int numSamples);
@@ -407,7 +405,7 @@ public final class SoundTouch {
      */
     public int receiveSamples(float[] outBuffer, int maxSamples) {
         requireNonNull(outBuffer, "outBuffer cannot be null.");
-        checkUnsignedInt(maxSamples);
+        Util.checkUnsignedInt(maxSamples);
         return receiveSamples(handle, outBuffer, maxSamples);
     }
     private static native int receiveSamples(long h, float[] outBuffer, int maxSamples);
@@ -423,7 +421,7 @@ public final class SoundTouch {
      */
     public int receiveSamplesI16(short[] outBuffer, int maxSamples) {
         requireNonNull(outBuffer, "outBuffer cannot be null.");
-        checkUnsignedInt(maxSamples);
+        Util.checkUnsignedInt(maxSamples);
         return receiveSamples_i16(handle, outBuffer, maxSamples);
     }
     private static native int receiveSamples_i16(long h, short[] outBuffer, int maxSamples);

@@ -23,7 +23,7 @@
  *
  */
 
-package com.tianscar.soundtouch4j;
+package com.tianscar.soundtouchjni;
 
 final class Util {
 

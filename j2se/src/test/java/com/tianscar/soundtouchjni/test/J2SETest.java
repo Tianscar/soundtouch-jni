@@ -1,7 +1,7 @@
-package com.tianscar.soundtouch4j.test;
+package com.tianscar.soundtouchjni.test;
 
-import com.tianscar.soundtouch4j.BPMDetector;
-import com.tianscar.soundtouch4j.SoundTouch;
+import com.tianscar.soundtouchjni.BPMDetector;
+import com.tianscar.soundtouchjni.SoundTouch;
 
 public class J2SETest {
 
