@@ -20,17 +20,17 @@ jobs:
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-      run: mingw-cmake ${{github.workspace}}/j2se/src/main/cpp/ -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DTARGET_SYSTEM=Windows -DTARGET_ARCH=X64
+      run: x86_64-w64-mingw32-cmake ${{github.workspace}}/j2se/src/main/cpp/ -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DTARGET_SYSTEM=Windows -DTARGET_ARCH=X64
 
     - name: Build
       # Build your program with the given configuration
-      run: mingw-cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: x86_64-w64-mingw32-cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
     - name: Test
       working-directory: ${{github.workspace}}/build
       # Execute tests defined by the CMake configuration.  
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: ctest -C ${{env.BUILD_TYPE}}
+      run: x86_64-w64-mingw32-ctest -C ${{env.BUILD_TYPE}}
     
     - uses: actions/upload-artifact@v3
       with:
