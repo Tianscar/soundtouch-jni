@@ -40,4 +40,4 @@ elseif(${TARGET_ARCH} MATCHES "ARM")
 endif()
 
 # Dynamic links
-target_link_libraries(soundtouchjni PUBLIC SoundTouch)
+target_link_libraries(soundtouchjni PUBLIC ${SoundTouch})
