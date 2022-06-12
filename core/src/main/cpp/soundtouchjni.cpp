@@ -113,7 +113,7 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_clear
 
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_setSetting
         (JNIEnv *env, jclass clazz, jlong h, jint settingId, jint value) {
-    soundtouch_setSetting((HANDLE) h, settingId, value);
+    return soundtouch_setSetting((HANDLE) h, settingId, value);
 }
 
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_getSetting
