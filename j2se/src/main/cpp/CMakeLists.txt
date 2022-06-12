@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(soundtouchjni C CXX)
+project(soundtouchjni C)
 
 # C/C++ standard
 set(CMAKE_C_STANDARD 11)
