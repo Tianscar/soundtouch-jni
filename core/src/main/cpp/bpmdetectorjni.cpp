@@ -24,6 +24,10 @@
 #include "com_tianscar_soundtouch4j_BPMDetector.h"
 #include "SoundTouchDLL.h"
 
+#if defined(_WIN32) || defined(WIN32)
+#pragma comment(lib, "SoundTouchDLL.lib")
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
