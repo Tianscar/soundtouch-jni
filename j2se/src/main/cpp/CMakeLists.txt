@@ -8,9 +8,6 @@ set(CMAKE_CXX_STANDARD 11)
 find_package(JNI)
 include_directories(${JNI_INCLUDE_DIRS})
 
-# Source code
-add_library(soundtouchjni SHARED ../../../../core/src/main/cpp/soundtouchjni.cpp ../../../../core/src/main/cpp/bpmdetectorjni.cpp)
-
 # SoundTouch
 include_directories(../../../../core/src/main/cpp/include)
 if (${TARGET_ARCH} MATCHES "X64")
@@ -37,6 +34,20 @@ elseif(${TARGET_ARCH} MATCHES "ARM64")
         find_library(SoundTouch libSoundTouchDLL.dylib ../../../src/main/resources/macos-arm64)
     endif()
 elseif(${TARGET_ARCH} MATCHES "ARM")
+endif()
+
+# Source code
+add_library(soundtouchjni SHARED ../../../../core/src/main/cpp/soundtouchjni.cpp ../../../../core/src/main/cpp/bpmdetectorjni.cpp)
+
+# MSVC link static libs
+if(${TARGET_SYSTEM} MATCHES "Windows")
+    if (${TARGET_ARCH} MATCHES "X64")
+        target_link_directories(soundtouchjni PUBLIC libs/windows-x86_64)
+    elseif(${TARGET_ARCH} MATCHES "X86")
+        target_link_directories(soundtouchjni PUBLIC libs/windows-x86)
+    elseif(${TARGET_ARCH} MATCHES "ARM64")
+        target_link_directories(soundtouchjni PUBLIC libs/windows-aarch64)
+    endif()
 endif()
 
 # Dynamic link library
