@@ -41,3 +41,6 @@ add_library(soundtouchjni SHARED ../../../../core/src/main/cpp/soundtouchjni.cpp
 
 # Dynamic links
 target_link_libraries(soundtouchjni SoundTouchDLL)
+if(${TARGET_SYSTEM} MATCHES "Windows")
+    target_link_libraries(soundtouchjni SoundTouchDLL.lib SoundTouch.lib)
+endif()
