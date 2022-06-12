@@ -22,11 +22,7 @@
 //
 
 #include "com_tianscar_soundtouch4j_SoundTouch.h"
-#if defined(_WIN32) || defined(WIN32)
-#include "SoundTouchDLL.hpp"
-#else
 #include "SoundTouchDLL.h"
-#endif
 
 #ifdef __cplusplus
 extern "C" {
