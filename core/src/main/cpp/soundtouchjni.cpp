@@ -149,7 +149,7 @@ JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_numSamples
 
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_isEmpty
         (JNIEnv *env, jclass clazz, jlong h) {
-    soundtouch_isEmpty((HANDLE) h);
+    return soundtouch_isEmpty((HANDLE) h);
 }
 
 #ifdef __cplusplus
