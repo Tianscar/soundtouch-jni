@@ -91,19 +91,19 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_flush
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_putSamples
         (JNIEnv *env, jclass clazz, jlong h, jfloatArray samples, jint numSamples) {
     jfloat *temp;
-    temp = (*env)->GetFloatArrayElements(env, samples, NULL);
+    temp = env->GetFloatArrayElements(samples, nullptr);
     soundtouch_putSamples((HANDLE) h, temp, numSamples);
-    (*env)->ReleaseFloatArrayElements(env, samples, temp, 0);
-    (*env)->DeleteLocalRef(env, samples);
+    env->ReleaseFloatArrayElements(samples, temp, 0);
+    env->DeleteLocalRef(samples);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_putSamples_1i16
         (JNIEnv *env, jclass clazz, jlong h, jshortArray samples, jint numSamples) {
     jshort *temp;
-    temp = (*env)->GetShortArrayElements(env, samples, NULL);
+    temp = env->GetShortArrayElements(samples, nullptr);
     soundtouch_putSamples_i16((HANDLE) h, temp, numSamples);
-    (*env)->ReleaseShortArrayElements(env, samples, temp, 0);
-    (*env)->DeleteLocalRef(env, samples);
+    env->ReleaseShortArrayElements(samples, temp, 0);
+    env->DeleteLocalRef(samples);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_clear
@@ -129,16 +129,16 @@ JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_numUnprocessed
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_receiveSamples
         (JNIEnv *env, jclass clazz, jlong h, jfloatArray outBuffer, jint maxSamples) {
     jfloat *temp;
-    jsize length = (jsize) soundtouch_receiveSamples((HANDLE) h, temp, maxSamples);
-    (*env)->SetFloatArrayRegion(env, outBuffer, 0, length, temp);
+    auto length = (jsize) soundtouch_receiveSamples((HANDLE) h, temp, maxSamples);
+    env->SetFloatArrayRegion(outBuffer, 0, length, temp);
     return length;
 }
 
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch4j_SoundTouch_receiveSamples_1i16
         (JNIEnv *env, jclass clazz, jlong h, jshortArray outBuffer, jint maxSamples) {
     jshort *temp;
-    jsize length = (jsize) soundtouch_receiveSamples_i16((HANDLE) h, temp, maxSamples);
-    (*env)->SetShortArrayRegion(env, outBuffer, 0, length, temp);
+    auto length = (jsize) soundtouch_receiveSamples_i16((HANDLE) h, temp, maxSamples);
+    env->SetShortArrayRegion(outBuffer, 0, length, temp);
     return length;
 }
 

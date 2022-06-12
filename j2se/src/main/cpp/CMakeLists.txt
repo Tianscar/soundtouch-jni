@@ -1,8 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
-project(soundtouchjni C CXX)
+project(soundtouchjni CXX)
 
-# C/C++ standard
-set(CMAKE_C_STANDARD 11)
+# C++ standard
 set(CMAKE_CXX_STANDARD 11)
 
 # JNI
@@ -35,7 +34,7 @@ elseif(${TARGET_ARCH} MATCHES "ARM")
 endif()
 
 # Source code
-add_library(soundtouchjni SHARED ../../../../core/src/main/cpp/soundtouchjni.c ../../../../core/src/main/cpp/bpmdetectorjni.c)
+add_library(soundtouchjni SHARED ../../../../core/src/main/cpp/soundtouchjni.cpp ../../../../core/src/main/cpp/bpmdetectorjni.cpp)
 
 # Dynamic links
 target_link_libraries(soundtouchjni ../../../src/main/resources/windows-x86_64/SoundTouchDLL.dll)
