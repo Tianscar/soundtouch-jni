@@ -95,7 +95,7 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_flush
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_putSamples
         (JNIEnv *env, jclass clazz, jlong h, jfloatArray samples, jint numSamples) {
     jfloat *temp;
-    temp = env->GetFloatArrayElements(samples, nullptr);
+    temp = env->GetFloatArrayElements(samples, NULL);
     soundtouch_putSamples((HANDLE) h, temp, numSamples);
     env->ReleaseFloatArrayElements(samples, temp, 0);
     env->DeleteLocalRef(samples);
@@ -104,7 +104,7 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_putSamples
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_putSamples_1i16
         (JNIEnv *env, jclass clazz, jlong h, jshortArray samples, jint numSamples) {
     jshort *temp;
-    temp = env->GetShortArrayElements(samples, nullptr);
+    temp = env->GetShortArrayElements(samples, NULL);
     soundtouch_putSamples_i16((HANDLE) h, temp, numSamples);
     env->ReleaseShortArrayElements(samples, temp, 0);
     env->DeleteLocalRef(samples);
@@ -133,7 +133,7 @@ JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_numUnprocesse
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_receiveSamples
         (JNIEnv *env, jclass clazz, jlong h, jfloatArray outBuffer, jint maxSamples) {
     jfloat *temp;
-    auto length = (jsize) soundtouch_receiveSamples((HANDLE) h, temp, maxSamples);
+    jsize length = (jsize) soundtouch_receiveSamples((HANDLE) h, temp, maxSamples);
     env->SetFloatArrayRegion(outBuffer, 0, length, temp);
     return length;
 }
@@ -141,7 +141,7 @@ JNIEXPORT jint JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_receiveSamples
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_receiveSamples_1i16
         (JNIEnv *env, jclass clazz, jlong h, jshortArray outBuffer, jint maxSamples) {
     jshort *temp;
-    auto length = (jsize) soundtouch_receiveSamples_i16((HANDLE) h, temp, maxSamples);
+    jsize length = (jsize) soundtouch_receiveSamples_i16((HANDLE) h, temp, maxSamples);
     env->SetShortArrayRegion(outBuffer, 0, length, temp);
     return length;
 }

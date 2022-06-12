@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.22)
 project(soundtouchjni)
 
+# C++ standard
+set(CMAKE_CXX_STANDARD 98)
+
 # JNI
 find_package(JNI)
 include_directories(${JNI_INCLUDE_DIRS})
