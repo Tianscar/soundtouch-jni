@@ -6,6 +6,7 @@ build/
 
 ### IntelliJ IDEA ###
 .idea/
+!**/**/.idea/
 
 *.iws
 *.iml
@@ -39,14 +40,14 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-### Android natives
+### Android
 /android/.externalNativeBuild
 /android/.cxx
-/android/build
 local.properties
 
-### J2SE natives
-/j2se/src/main/cpp/cmake-build-debug
-/j2se/src/main/cpp/cmake-build-release
-/j2se/src/main/cpp/cmake-build-relwithdebinfo
-/j2se/src/main/cpp/cmake-build-minsizerel
+### Java SE
+/javase/src/main/cpp/cmake-build-debug
+/javase/src/main/cpp/cmake-build-release
+/javase/src/main/cpp/cmake-build-relwithdebinfo
+/javase/src/main/cpp/cmake-build-minsizerel
+/.idea/

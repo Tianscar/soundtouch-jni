@@ -1,5 +1,6 @@
-rootProject.name = "soundtouchjni"
+rootProject.name = 'soundtouch-jni'
 
 include ':core'
-include ':j2se'
 include ':android'
+include ':javase'
+

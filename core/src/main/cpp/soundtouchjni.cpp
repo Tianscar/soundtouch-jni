@@ -21,7 +21,7 @@
 // SOFTWARE.
 //
 
-#include "com_tianscar_soundtouchjni_SoundTouch.h"
+#include "com_tianscar_soundtouch_SoundTouch.h"
 
 #if defined(_WIN32) || defined(WIN32)
 #pragma comment(lib, "SoundTouchDLL.lib")
@@ -33,67 +33,67 @@ extern "C" {
 
 #include "SoundTouchDLL.h"
 
-JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_createInstance
+JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch_SoundTouch_createInstance
         (JNIEnv *env, jclass clazz) {
     return (jlong) soundtouch_createInstance();
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_destroyInstance
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_destroyInstance
         (JNIEnv *env, jclass clazz, jlong h) {
     soundtouch_destroyInstance((HANDLE) h);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_setRate
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_setRate
         (JNIEnv *env, jclass clazz, jlong h, jfloat newRate) {
     soundtouch_setRate((HANDLE) h, newRate);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_setTempo
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_setTempo
         (JNIEnv *env, jclass clazz, jlong h, jfloat newTempo) {
     soundtouch_setTempo((HANDLE) h, newTempo);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_setRateChange
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_setRateChange
         (JNIEnv *env, jclass clazz, jlong h, jfloat newRate) {
     soundtouch_setRateChange((HANDLE) h, newRate);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_setTempoChange
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_setTempoChange
         (JNIEnv *env, jclass clazz, jlong h, jfloat newTempo) {
     soundtouch_setTempoChange((HANDLE) h, newTempo);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_setPitch
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_setPitch
         (JNIEnv *env, jclass clazz, jlong h, jfloat newPitch) {
     soundtouch_setPitch((HANDLE) h, newPitch);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_setPitchOctaves
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_setPitchOctaves
         (JNIEnv *env, jclass clazz, jlong h, jfloat newPitch) {
     soundtouch_setPitchOctaves((HANDLE) h, newPitch);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_setPitchSemiTones
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_setPitchSemiTones
         (JNIEnv *env, jclass clazz, jlong h, jfloat newPitch) {
     soundtouch_setPitchSemiTones((HANDLE) h, newPitch);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_setChannels
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_setChannels
         (JNIEnv *env, jclass clazz, jlong h, jlong numChannels) {
     soundtouch_setChannels((HANDLE) h, numChannels);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_setSampleRate
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_setSampleRate
         (JNIEnv *env, jclass clazz, jlong h, jlong srate) {
     soundtouch_setSampleRate((HANDLE) h, srate);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_flush
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_flush
         (JNIEnv *env, jclass clazz, jlong h) {
     soundtouch_flush((HANDLE) h);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_putSamples
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_putSamples
         (JNIEnv *env, jclass clazz, jlong h, jfloatArray samples, jint numSamples) {
     jfloat *temp;
     temp = env->GetFloatArrayElements(samples, nullptr);
@@ -102,7 +102,7 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_putSamples
     env->DeleteLocalRef(samples);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_putSamples_1i16
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_putSamples_1i16
         (JNIEnv *env, jclass clazz, jlong h, jshortArray samples, jint numSamples) {
     jshort *temp;
     temp = env->GetShortArrayElements(samples, nullptr);
@@ -111,27 +111,27 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_putSamples_1i1
     env->DeleteLocalRef(samples);
 }
 
-JNIEXPORT void JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_clear
+JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_clear
         (JNIEnv *env, jclass clazz, jlong h) {
     soundtouch_clear((HANDLE) h);
 }
 
-JNIEXPORT jint JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_setSetting
+JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_setSetting
         (JNIEnv *env, jclass clazz, jlong h, jint settingId, jint value) {
     return soundtouch_setSetting((HANDLE) h, settingId, value);
 }
 
-JNIEXPORT jint JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_getSetting
+JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_getSetting
         (JNIEnv *env, jclass clazz, jlong h, jint settingId) {
     return soundtouch_getSetting((HANDLE) h, settingId);
 }
 
-JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_numUnprocessedSamples
+JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch_SoundTouch_numUnprocessedSamples
         (JNIEnv *env, jclass clazz, jlong h) {
     return soundtouch_numUnprocessedSamples((HANDLE) h);
 }
 
-JNIEXPORT jint JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_receiveSamples
+JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_receiveSamples
         (JNIEnv *env, jclass clazz, jlong h, jfloatArray outBuffer, jint maxSamples) {
     jfloat *temp;
     auto length = (jsize) soundtouch_receiveSamples((HANDLE) h, temp, maxSamples);
@@ -139,7 +139,7 @@ JNIEXPORT jint JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_receiveSamples
     return length;
 }
 
-JNIEXPORT jint JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_receiveSamples_1i16
+JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_receiveSamples_1i16
         (JNIEnv *env, jclass clazz, jlong h, jshortArray outBuffer, jint maxSamples) {
     jshort *temp;
     auto length = (jsize) soundtouch_receiveSamples_i16((HANDLE) h, temp, maxSamples);
@@ -147,12 +147,12 @@ JNIEXPORT jint JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_receiveSamples
     return length;
 }
 
-JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_numSamples
+JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch_SoundTouch_numSamples
         (JNIEnv *env, jclass clazz, jlong h) {
     return soundtouch_numSamples((HANDLE) h);
 }
 
-JNIEXPORT jint JNICALL Java_com_tianscar_soundtouchjni_SoundTouch_isEmpty
+JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_isEmpty
         (JNIEnv *env, jclass clazz, jlong h) {
     return soundtouch_isEmpty((HANDLE) h);
 }

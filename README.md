@@ -1,13 +1,30 @@
-# SoundTouch-JNI
+# SoundTouch JNI
 
-Java bindings for [SoundTouch](https://www.surina.net/soundtouch). Can be used on both J2SE and Android.
+JNI bindings for [SoundTouch](https://www.surina.net/soundtouch). Can be used on both Java SE and Android.
 
-SoundTouch-JNI version: 1.0.4  
 SoundTouch version: 2.3.1
 
+## Add the library to your project (gradle)
+1. Add the Maven Central repository (if not exist) to your build file:
+```groovy
+repositories {
+    mavenCentral()
+}
+```
+
+2. Add the dependency:
+```groovy
+dependencies {
+    implementation 'com.tianscar:soundtouch-jni-android:1.0.5' // Android
+    implementation 'com.tianscar:soundtouch-jni-javase:1.0.5'  // Java SE
+}
+```
+
 ## Usage
-docs: https://docs.tianscar.com/soundtouchjni
+[JavaDoc](https://docs.tianscar.com/soundtouch-jni)
 
 ## License
-soundtouchjni - [MIT](https://github.com/Tianscar/soundtouchjni/blob/main/LICENSE) (c) Tianscar  
-SoundTouch - [LGPL-2.1](https://github.com/Tianscar/soundtouchjni/blob/main/SoundTouch-LICENSE) (c) Olli Parviainen
+[MIT](https://github.com/Tianscar/soundtouchjni/blob/main/LICENSE) (c) Tianscar  
+
+### Dependencies
+[SoundTouch](https://codeberg.org/soundtouch/soundtouch) - [LGPL-2.1](https://codeberg.org/soundtouch/soundtouch/src/branch/master/COPYING.TXT) (c) Olli Parviainen
