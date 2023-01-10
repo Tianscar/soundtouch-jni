@@ -30,10 +30,10 @@ import static com.tianscar.soundtouch.Util.loadLibrary;
 /**
  * The BPMDetector class that invokes native BPMDetector routines through the JNI
  * interface.
- * <br/><br/>
+ * <br><br>
  * <b>
  * Beats-per-minute (BPM) detection routine.
- * </b><br/>
+ * </b><br>
  * The beat detection algorithm works as follows:
  * <ul>
  * <li>

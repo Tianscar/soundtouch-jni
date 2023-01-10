@@ -32,10 +32,10 @@ import static java.util.Objects.requireNonNull;
 /**
  * The SoundTouch class that invokes native SoundTouch routines through the JNI
  * interface.
- * <br/><br/>
+ * <br><br>
  * <b>
  * SoundTouch - main class for tempo/pitch/rate adjusting routines.
- * </b><br/>
+ * </b><br>
  * Notes:
  * <ul><li>
  * Initialize the SoundTouch object instance by setting up the sound stream
@@ -115,10 +115,10 @@ public final class SoundTouch {
      * This value gives approximate value of how many input samples you'll need to
      * feed into SoundTouch after initial buffering to get out a new batch of
      * output samples.
-     * <br/><br/>
+     * <br><br>
      * This value does not include initial buffering at beginning of a new processing
      * stream, use SETTING_INITIAL_LATENCY to get the initial buffering size.
-     * <br/><br/>
+     * <br><br>
      * Notices:
      * - This is read-only parameter, i.e. setSetting ignores this parameter
      * - This parameter value is not constant but change depending on
@@ -129,7 +129,7 @@ public final class SoundTouch {
     /** Call "getSetting" with this ID to query nominal average processing output
      * size in samples. This value tells approcimate value how many output samples
      * SoundTouch outputs once it does DSP processing run for a batch of input samples.
-     * <br/><br/>
+     * <br><br>
      * Notices:
      * - This is read-only parameter, i.e. setSetting ignores this parameter
      * - This parameter value is not constant but change depending on
@@ -139,26 +139,26 @@ public final class SoundTouch {
     /** Call "getSetting" with this ID to query initial processing latency, i.e.
      * approx. how many samples you'll need to enter to SoundTouch pipeline before
      * you can expect to get first batch of ready output samples out.
-     * <br/><br/>
+     * <br><br>
      * After the first output batch, you can then expect to get approx.
      * SETTING_NOMINAL_OUTPUT_SEQUENCE ready samples out for every
      * SETTING_NOMINAL_INPUT_SEQUENCE samples that you enter into SoundTouch.
-     * <br/><br/>
-     * Example:
-     *     processing with parameter -tempo=5
-     *     => initial latency = 5509 samples
-     *        input sequence  = 4167 samples
+     * <br><br>
+     * Example:<br>
+     *     processing with parameter -tempo=5<br>
+     *     => initial latency = 5509 samples<br>
+     *        input sequence  = 4167 samples<br>
      *        output sequence = 3969 samples
-     * <br/><br/>
+     * <br><br>
      * Accordingly, you can expect to feed in approx. 5509 samples at beginning of
      * the stream, and then you'll get out the first 3969 samples. After that, for
      * every approx. 4167 samples that you'll put in, you'll receive again approx.
      * 3969 samples out.
-     * <br/><br/>
+     * <br><br>
      * This also means that average latency during stream processing is
      * INITIAL_LATENCY-OUTPUT_SEQUENCE/2, in the above example case 5509-3969/2
      * = 3524 samples
-     * <br/><br/>
+     * <br><br>
      * Notices:
      * - This is read-only parameter, i.e. setSetting ignores this parameter
      * - This parameter value is not constant but change depending on
@@ -310,7 +310,7 @@ public final class SoundTouch {
 
     /** Flushes the last samples from the processing pipeline to the output.
      * Clears also the internal processing buffers.
-     * <br/><br/>
+     * <br><br>
      * Note: This function is meant for extracting the last samples of a sound
      * stream. This function may introduce additional blank samples in the end
      * of the sound stream, and thus it's not recommended to call this function
@@ -396,7 +396,7 @@ public final class SoundTouch {
 
     /** Adjusts book-keeping so that given number of samples are removed from beginning of the
      * sample buffer without copying them anywhere.
-     * <br/><br/>
+     * <br><br>
      * Used to reduce the number of samples in the buffer when accessing the sample buffer directly
      * with 'ptrBegin' function.
      *
