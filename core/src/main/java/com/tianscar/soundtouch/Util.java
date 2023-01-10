@@ -103,17 +103,29 @@ final class Util {
             }
             catch (final UnsatisfiedLinkError e) {
                 final String resDir = resName + "-" + resArch;
-                load(resDir, SoundTouchDLL);
-                load(resDir, soundtouchjni);
+                final File outDir = new File(System.getProperty("java.io.tmpdir"),
+                        SoundTouch.class.getCanonicalName() + "-" +
+                                System.getProperty("user.name"));
+                if (!outDir.exists()) {
+                    if (!outDir.mkdirs()) throw new IllegalStateException("Cannot create output directory!");
+                }
+                if (!outDir.canWrite()) throw new IllegalStateException("Cannot create output directory!");
+                final File SoundTouchDLLFile = new File(outDir, UUID.randomUUID().toString());
+                final File soundtouchjniFile = new File(outDir, UUID.randomUUID().toString());
+                extract(resDir, SoundTouchDLL, SoundTouchDLLFile);
+                extract(resDir, soundtouchjni, soundtouchjniFile);
+                System.load(SoundTouchDLLFile.getAbsolutePath());
+                System.load(soundtouchjniFile.getAbsolutePath());
+                SoundTouchDLLFile.deleteOnExit();
+                soundtouchjniFile.deleteOnExit();
             }
         }
     }
 
     @SuppressWarnings("UnsafeDynamicallyLoadedCode")
-    private static void load(final String resDir, final String libname) {
-        try (final InputStream inputStream = SoundTouch.class.getResourceAsStream(resDir + "/" + libname);
+    private static void extract(final String resDir, final String libname, final File outFile) {
+        try (final InputStream inputStream = SoundTouch.class.getResourceAsStream("/" + resDir + "/" + libname);
              final BufferedInputStream source = new BufferedInputStream(Objects.requireNonNull(inputStream))) {
-            final File outFile = new File(System.getProperty("java.io.tmpdir"), UUID.randomUUID().toString());
             if (!outFile.exists()) {
                 if (!outFile.createNewFile()) throw new IllegalStateException("Cannot create output file!");
             }
@@ -125,10 +137,6 @@ final class Util {
                 while ((length = source.read(buffer)) != -1) {
                     target.write(buffer, 0, length);
                 }
-                System.load(outFile.getAbsolutePath());
-            }
-            finally {
-                outFile.delete();
             }
         }
         catch (final IOException e) {
