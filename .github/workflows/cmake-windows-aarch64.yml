@@ -34,5 +34,5 @@ jobs:
     
     - uses: actions/upload-artifact@v3
       with:
-        name: soundtouchjni-1.0.4-libs-windows-aarch64
+        name: soundtouchjni-1.0.5-libs-windows-aarch64
         path: ${{github.workspace}}\build\MinSizeRel\soundtouchjni.dll

@@ -34,5 +34,5 @@ jobs:
     
     - uses: actions/upload-artifact@v3
       with:
-        name: soundtouchjni-1.0.4-libs-macos-arm64
+        name: soundtouchjni-1.0.5-libs-macos-arm64
         path: ${{github.workspace}}/build/libsoundtouchjni.dylib
