@@ -2,12 +2,6 @@ plugins {
     id 'com.android.library'
 }
 
-tasks.withType(Javadoc).configureEach {
-    options.addStringOption('Xdoclint:none', '-quiet')
-    options.addStringOption('encoding', 'UTF-8')
-    options.addStringOption('charSet', 'UTF-8')
-}
-
 android {
     namespace libAndroidNamespace
     compileSdk libAndroidCompileSdk
@@ -56,7 +50,6 @@ android {
     publishing {
         singleVariant('release') {
             withSourcesJar()
-            withJavadocJar()
         }
     }
 }
