@@ -146,7 +146,7 @@ public final class SoundTouch {
      * <br><br>
      * Example:<br>
      *     processing with parameter -tempo=5<br>
-     *     => initial latency = 5509 samples<br>
+     *     =&gt; initial latency = 5509 samples<br>
      *        input sequence  = 4167 samples<br>
      *        output sequence = 3969 samples
      * <br><br>
