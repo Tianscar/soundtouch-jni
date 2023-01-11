@@ -20,6 +20,8 @@ subprojects {
         libAndroidCompileSdk = 33
         libAndroidMinSdk = 16
         libAndroidTargetSdk = 33
+
+        libDescription = 'JNI bindings for SoundTouch'
     }
     group = libGroupName
     version = libVersionName
@@ -65,7 +67,7 @@ configure ([project(':core'), project(':javase')]) {
                 from components.java
                 pom {
                     name = libName
-                    description = 'JNI bindings for [SoundTouch](https://www.surina.net/soundtouch)'
+                    description = libDescription
                     url = 'https://github.com/Tianscar/soundtouch-jni'
                     licenses {
                         license {

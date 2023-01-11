@@ -64,7 +64,7 @@ publishing {
             }
             pom {
                 name = libName
-                description = 'The JNI-Encapsulated SoundTouch library'
+                description = libDescription
                 url = 'https://github.com/Tianscar/soundtouch-jni'
                 licenses {
                     license {
