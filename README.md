@@ -15,8 +15,8 @@ repositories {
 2. Add the dependency:
 ```groovy
 dependencies {
-    implementation 'com.tianscar:soundtouch-jni-android:1.0.5' // Android
-    implementation 'com.tianscar:soundtouch-jni-javase:1.0.5'  // Java SE
+    implementation 'com.tianscar.soundtouch:soundtouch-jni-android:1.0.5' // Android
+    implementation 'com.tianscar.soundtouch:soundtouch-jni-javase:1.0.5'  // Java SE
 }
 ```
 

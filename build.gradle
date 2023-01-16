@@ -10,13 +10,13 @@ subprojects {
         libVendorName = 'Tianscar'
 
         libVersionCode = 7
-        libGroupName = 'com.tianscar'
+        libGroupName = 'com.tianscar.soundtouch'
         libVersionName = '1.0.5'
 
         libSourceCompatibility = JavaVersion.VERSION_1_8
         libTargetCompatibility = JavaVersion.VERSION_1_8
 
-        libAndroidNamespace = 'com.tianscar.soundtouch'
+        libAndroidNamespace = libGroupName
         libAndroidCompileSdk = 33
         libAndroidMinSdk = 16
         libAndroidTargetSdk = 33

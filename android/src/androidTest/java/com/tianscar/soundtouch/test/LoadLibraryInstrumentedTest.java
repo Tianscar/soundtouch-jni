@@ -1,4 +1,4 @@
-package com.tianscar.soundtouch;
+package com.tianscar.soundtouch.test;
 
 import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
