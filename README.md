@@ -8,6 +8,7 @@ SoundTouch version: 2.3.1
 1. Add the Maven Central repository (if not exist) to your build file:
 ```groovy
 repositories {
+    ...
     mavenCentral()
 }
 ```
@@ -15,6 +16,7 @@ repositories {
 2. Add the dependency:
 ```groovy
 dependencies {
+    ...
     implementation 'com.tianscar.soundtouch:soundtouch-jni-android:1.0.5' // Android
     implementation 'com.tianscar.soundtouch:soundtouch-jni-javase:1.0.5'  // Java SE
 }
