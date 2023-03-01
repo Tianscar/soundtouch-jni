@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////
 ///
-/// SoundTouch DLL wrapper - wraps SoundTouch routines into a Dynamic Load 
+/// SoundTouch DLL wrapper - wraps SoundTouch routines into a Dynamic Load
 /// Library interface.
 ///
 /// Author        : Copyright (c) Olli Parviainen
@@ -119,7 +119,7 @@ SOUNDTOUCHDLL_API const char *__cdecl soundtouch_getVersionString()
 }
 
 
-/// Get SoundTouch library version string - alternative function for 
+/// Get SoundTouch library version string - alternative function for
 /// environments that can't properly handle character string as return value
 SOUNDTOUCHDLL_API void __cdecl soundtouch_getVersionString2(char* versionString, int bufferSize)
 {
@@ -185,7 +185,7 @@ SOUNDTOUCHDLL_API void __cdecl soundtouch_setPitch(HANDLE h, float newPitch)
     sth->pst->setPitch(newPitch);
 }
 
-/// Sets pitch change in octaves compared to the original pitch  
+/// Sets pitch change in octaves compared to the original pitch
 /// (-1.00 .. +1.00)
 SOUNDTOUCHDLL_API void __cdecl soundtouch_setPitchOctaves(HANDLE h, float newPitch)
 {
@@ -335,9 +335,9 @@ SOUNDTOUCHDLL_API void __cdecl soundtouch_clear(HANDLE h)
 
 /// Changes a setting controlling the processing system behaviour. See the
 /// 'SETTING_...' defines for available setting ID's.
-/// 
+///
 /// \return 'nonzero' if the setting was successfully changed
-SOUNDTOUCHDLL_API int __cdecl soundtouch_setSetting(HANDLE h, 
+SOUNDTOUCHDLL_API int __cdecl soundtouch_setSetting(HANDLE h,
         int settingId,   ///< Setting ID number. see SETTING_... defines.
         int value        ///< New setting value.
         )
@@ -352,7 +352,7 @@ SOUNDTOUCHDLL_API int __cdecl soundtouch_setSetting(HANDLE h,
 /// 'SETTING_...' defines for available setting ID's.
 ///
 /// \return the setting value.
-SOUNDTOUCHDLL_API int __cdecl soundtouch_getSetting(HANDLE h, 
+SOUNDTOUCHDLL_API int __cdecl soundtouch_getSetting(HANDLE h,
         int settingId    ///< Setting ID number, see SETTING_... defines.
         )
 {
@@ -373,12 +373,10 @@ SOUNDTOUCHDLL_API uint __cdecl soundtouch_numUnprocessedSamples(HANDLE h)
 }
 
 
-/// Adjusts book-keeping so that given number of samples are removed from beginning of the 
-/// sample buffer without copying them anywhere. 
+/// Receive ready samples from the processing pipeline.
 ///
-/// Used to reduce the number of samples in the buffer when accessing the sample buffer directly
-/// with 'ptrBegin' function.
-SOUNDTOUCHDLL_API uint __cdecl soundtouch_receiveSamples(HANDLE h, 
+/// if called with outBuffer=NULL, just reduces amount of ready samples within the pipeline.
+SOUNDTOUCHDLL_API uint __cdecl soundtouch_receiveSamples(HANDLE h,
         SAMPLETYPE *outBuffer,      ///< Buffer where to copy output samples.
         unsigned int maxSamples     ///< How many samples to receive at max.
         )
@@ -507,7 +505,7 @@ SOUNDTOUCHDLL_API void __cdecl bpm_destroyInstance(HANDLE h)
 
 
 /// Feed 'numSamples' sample frames from 'samples' into the BPM detection handler
-SOUNDTOUCHDLL_API void __cdecl bpm_putSamples(HANDLE h, 
+SOUNDTOUCHDLL_API void __cdecl bpm_putSamples(HANDLE h,
         const float *samples,
         unsigned int numSamples)
 {
@@ -520,7 +518,7 @@ SOUNDTOUCHDLL_API void __cdecl bpm_putSamples(HANDLE h,
 
 /// Feed 'numSamples' sample frames from 'samples' into the BPM detection handler.
 /// 16bit int sample format version.
-SOUNDTOUCHDLL_API void __cdecl bpm_putSamples_i16(HANDLE h, 
+SOUNDTOUCHDLL_API void __cdecl bpm_putSamples_i16(HANDLE h,
         const short *samples,
         unsigned int numSamples)
 {

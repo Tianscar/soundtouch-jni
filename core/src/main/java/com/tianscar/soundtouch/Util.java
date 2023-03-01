@@ -36,7 +36,9 @@ import java.util.UUID;
 
 final class Util {
 
-    private Util(){}
+    private Util() {
+        throw new UnsupportedOperationException();
+    }
 
     public static int UNSIGNED_MIN = 0;
     public static long UINT_MAX = 4294967295L;
@@ -47,7 +49,6 @@ final class Util {
     }
 
     private static volatile boolean librariesLoaded = false;
-
     @SuppressWarnings("UnsafeDynamicallyLoadedCode")
     public static void loadLibrary() {
         if (librariesLoaded) return;
@@ -98,6 +99,7 @@ final class Util {
             }
             final String SoundTouchDLL = prefix + "SoundTouchDLL" + "." + extension, soundtouchjni = prefix + "soundtouchjni" + "." + extension;
             try {
+                // load from java.library.path
                 System.loadLibrary(SoundTouchDLL);
                 System.loadLibrary(soundtouchjni);
             }

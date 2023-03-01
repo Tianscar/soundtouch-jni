@@ -76,10 +76,10 @@ import static java.util.Objects.requireNonNull;
 public final class SoundTouch {
 
     /** Soundtouch library version string */
-    public static final String SOUNDTOUCH_VERSION = "2.3.1";
+    public static final String SOUNDTOUCH_VERSION = "2.3.2";
 
     /** SoundTouch library version id */
-    public static final long SOUNDTOUCH_VERSION_ID = 20301L;
+    public static final long SOUNDTOUCH_VERSION_ID = 20302L;
 
     // Available setting IDs for the 'setSetting' & 'getSetting' functions:
 

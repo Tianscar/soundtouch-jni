@@ -6,25 +6,25 @@ subprojects {
     apply plugin: 'signing'
     apply plugin: 'maven-publish'
     ext {
-        libName = 'SoundTouch JNI'
-        libVendorName = 'Tianscar'
+        libraryName = 'SoundTouch JNI'
+        libraryVendorName = 'Tianscar'
 
-        libVersionCode = 7
-        libGroupName = 'com.tianscar.soundtouch'
-        libVersionName = '1.0.5'
+        libraryVersionCode = 8
+        libraryGroupName = 'com.tianscar.soundtouch'
+        libraryVersionName = '1.0.6'
 
-        libSourceCompatibility = JavaVersion.VERSION_1_8
-        libTargetCompatibility = JavaVersion.VERSION_1_8
+        librarySourceCompatibility = JavaVersion.VERSION_1_8
+        libraryTargetCompatibility = JavaVersion.VERSION_1_8
 
-        libAndroidNamespace = libGroupName
-        libAndroidCompileSdk = 33
-        libAndroidMinSdk = 16
-        libAndroidTargetSdk = 33
+        libraryAndroidNamespace = libraryGroupName
+        libraryAndroidCompileSdk = 33
+        libraryAndroidMinSdk = 16
+        libraryAndroidTargetSdk = 33
 
-        libDescription = 'JNI bindings for SoundTouch'
+        libraryDescription = 'JNI bindings for SoundTouch'
     }
-    group = libGroupName
-    version = libVersionName
+    group = libraryGroupName
+    version = libraryVersionName
     repositories {
         mavenCentral()
         google()
@@ -35,8 +35,8 @@ configure ([project(':core'), project(':javase')]) {
     apply plugin: 'java-library'
 
     [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-    sourceCompatibility = libSourceCompatibility
-    targetCompatibility = libTargetCompatibility
+    sourceCompatibility = librarySourceCompatibility
+    targetCompatibility = libraryTargetCompatibility
 
     java {
         withJavadocJar()
@@ -61,13 +61,13 @@ configure ([project(':core'), project(':javase')]) {
     publishing {
         publications {
             mavenJava(MavenPublication) {
-                groupId = libGroupName
+                groupId = libraryGroupName
                 artifactId = "${rootProject.name}-${project.name}"
-                version = libVersionName
+                version = libraryVersionName
                 from components.java
                 pom {
-                    name = libName
-                    description = libDescription
+                    name = libraryName
+                    description = libraryDescription
                     url = 'https://github.com/Tianscar/soundtouch-jni'
                     licenses {
                         license {
@@ -78,7 +78,7 @@ configure ([project(':core'), project(':javase')]) {
                     developers {
                         developer {
                             id = 'Tianscar'
-                            name = 'Tiansword Carbonicacid'
+                            name = 'Karstian Lee'
                             email = 'tianscar@protonmail.com'
                         }
                     }
@@ -107,9 +107,6 @@ configure ([project(':core'), project(':javase')]) {
     }
 
     signing {
-        def signingKey = findProperty("signingKey") ?: System.getenv("GPG_KEY")
-        def signingPassword = findProperty("signingPassword") ?:System.getenv("GPG_PASSWORD")
-        useInMemoryPgpKeys(signingKey, signingPassword)
         sign(publishing.publications.mavenJava)
     }
 
