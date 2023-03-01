@@ -37,5 +37,5 @@ jobs:
     
     - uses: actions/upload-artifact@v3
       with:
-        name: soundtouchjni-1.0.5-libs-linux-i386
+        name: soundtouchjni-1.0.6-libs-linux-i386
         path: ${{github.workspace}}/build/libsoundtouchjni.so

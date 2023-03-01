@@ -23,6 +23,11 @@ dependencies {
 }
 ```
 
+## Notes
+### For Java SE
+It is recommended to put the native binaries to the `java.library.path`, instead of extract from the jar at runtime.
+If you already put the binaries to `java.library.path`, the jar for Java SE no longer required, and can be removed from the dependencies.
+
 ## Usage
 [JavaDoc](https://docs.tianscar.com/soundtouch-jni)
 
