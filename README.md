@@ -32,7 +32,7 @@ If you already put the binaries to `java.library.path`, the jar for Java SE no l
 [JavaDoc](https://docs.tianscar.com/soundtouch-jni)
 
 ## License
-[MIT](https://github.com/Tianscar/soundtouchjni/blob/main/LICENSE) (c) Tianscar  
+[MIT](https://github.com/Tianscar/soundtouchjni/blob/main/LICENSE) (c) Karstian Lee  
 
 ### Dependencies
 [LGPL-2.1](https://codeberg.org/soundtouch/soundtouch/src/branch/master/COPYING.TXT) [SoundTouch](https://codeberg.org/soundtouch/soundtouch)
