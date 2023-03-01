@@ -75,7 +75,7 @@ publishing {
                 developers {
                     developer {
                         id = 'Tianscar'
-                        name = 'Tiansword Carbonicacid'
+                        name = 'Karstian Lee'
                         email = 'tianscar@protonmail.com'
                     }
                 }
