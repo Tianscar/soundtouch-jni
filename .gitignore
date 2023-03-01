@@ -51,3 +51,4 @@ local.properties
 /javase/src/main/cpp/cmake-build-relwithdebinfo
 /javase/src/main/cpp/cmake-build-minsizerel
 /.idea/
+gradle.properties
