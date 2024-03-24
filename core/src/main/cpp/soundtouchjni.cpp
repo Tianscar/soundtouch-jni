@@ -133,7 +133,7 @@ JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch_SoundTouch_numUnprocessedSa
 
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_receiveSamples
         (JNIEnv *env, jclass clazz, jlong h, jfloatArray outBuffer, jint maxSamples) {
-    jfloat *temp = malloc(maxSamples);
+    jfloat *temp = (jfloat *) malloc(maxSamples);
     auto length = (jsize) soundtouch_receiveSamples((HANDLE) h, temp, maxSamples);
     env->SetFloatArrayRegion(outBuffer, 0, length, temp);
     free(temp);
@@ -142,7 +142,7 @@ JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_receiveSamples
 
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_receiveSamples_1i16
         (JNIEnv *env, jclass clazz, jlong h, jshortArray outBuffer, jint maxSamples) {
-    jshort *temp = malloc(maxSamples);
+    jshort *temp = (jshort *) malloc(maxSamples);
     auto length = (jsize) soundtouch_receiveSamples_i16((HANDLE) h, temp, maxSamples);
     env->SetShortArrayRegion(outBuffer, 0, length, temp);
     free(temp);
