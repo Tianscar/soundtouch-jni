@@ -136,7 +136,7 @@ JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_receiveSamples
     temp = env->GetFloatArrayElements(outBuffer, &isCopy);
     auto length = (jsize) soundtouch_receiveSamples((HANDLE) h, temp, maxSamples);
     if (isCopy) env->SetFloatArrayRegion(outBuffer, 0, length, temp);
-    env->ReleaseFloatArrayElements(samples, temp, 0);
+    env->ReleaseFloatArrayElements(outBuffer, temp, 0);
     return length;
 }
 
@@ -147,7 +147,7 @@ JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_receiveSamples_1i
     temp = env->GetShortArrayElements(outBuffer, &isCopy);
     auto length = (jsize) soundtouch_receiveSamples((HANDLE) h, temp, maxSamples);
     if (isCopy) env->SetShortArrayRegion(outBuffer, 0, length, temp);
-    env->ReleaseShortArrayElements(samples, temp, 0);
+    env->ReleaseShortArrayElements(outBuffer, temp, 0);
     return length;
 }
 
