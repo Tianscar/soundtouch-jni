@@ -23,6 +23,8 @@
 
 #include "com_tianscar_soundtouch_BPMDetector.h"
 
+#include <cstddef>
+
 #if defined(_WIN32) || defined(WIN32)
 #pragma comment(lib, "SoundTouchDLL.lib")
 #endif
