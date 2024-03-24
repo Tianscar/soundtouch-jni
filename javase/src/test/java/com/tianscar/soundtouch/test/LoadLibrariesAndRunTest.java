@@ -3,7 +3,7 @@ package com.tianscar.soundtouch.test;
 import com.tianscar.soundtouch.SoundTouch;
 import org.junit.jupiter.api.Test;
 
-public class LoadlibraryTest {
+public class LoadLibrariesAndRunTest {
 
     @Test
     public void loadLibraryTest() throws ClassNotFoundException {
