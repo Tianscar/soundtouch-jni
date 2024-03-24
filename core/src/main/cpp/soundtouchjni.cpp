@@ -99,7 +99,7 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_putSamples
         (JNIEnv *env, jclass clazz, jlong h, jfloatArray samples, jint offset, jint numSamples) {
     jfloat *temp;
     temp = env->GetFloatArrayElements(samples, nullptr);
-    soundtouch_putSamples((HANDLE) h, (jfloat *) ((size_t) temp + offset), numSamples);
+    soundtouch_putSamples((HANDLE) h, (jfloat *) ((size_t) temp + (size_t) offset << 1), numSamples);
     env->ReleaseFloatArrayElements(samples, temp, 0);
 }
 
@@ -107,7 +107,7 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_putSamples_1i16
         (JNIEnv *env, jclass clazz, jlong h, jshortArray samples, jint offset, jint numSamples) {
     jshort *temp;
     temp = env->GetShortArrayElements(samples, nullptr);
-    soundtouch_putSamples_i16((HANDLE) h, (jshort *) ((size_t) temp + offset), numSamples);
+    soundtouch_putSamples_i16((HANDLE) h, (jshort *) ((size_t) temp + (size_t) offset << 1), numSamples);
     env->ReleaseShortArrayElements(samples, temp, 0);
 }
 
@@ -136,7 +136,7 @@ JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_receiveSamples
     jfloat *temp;
     jboolean isCopy;
     temp = env->GetFloatArrayElements(outBuffer, &isCopy);
-    auto length = (jsize) soundtouch_receiveSamples((HANDLE) h, (jfloat *) ((size_t) temp + offset), maxSamples);
+    auto length = (jsize) soundtouch_receiveSamples((HANDLE) h, (jfloat *) ((size_t) temp + (size_t) offset << 1), maxSamples);
     if (isCopy) env->SetFloatArrayRegion(outBuffer, offset, length, temp);
     env->ReleaseFloatArrayElements(outBuffer, temp, 0);
     return length;
@@ -147,7 +147,7 @@ JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_receiveSamples_1i
     jshort *temp;
     jboolean isCopy;
     temp = env->GetShortArrayElements(outBuffer, &isCopy);
-    auto length = (jsize) soundtouch_receiveSamples_i16((HANDLE) h, (jshort *) ((size_t) temp + offset), maxSamples);
+    auto length = (jsize) soundtouch_receiveSamples_i16((HANDLE) h, (jshort *) ((size_t) temp + (size_t) offset << 1), maxSamples);
     if (isCopy) env->SetShortArrayRegion(outBuffer, offset, length, temp);
     env->ReleaseShortArrayElements(outBuffer, temp, 0);
     return length;

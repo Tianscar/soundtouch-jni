@@ -9,9 +9,9 @@ subprojects {
         libraryName = 'SoundTouch JNI'
         libraryVendorName = 'Tianscar'
 
-        libraryVersionCode = 11
+        libraryVersionCode = 12
         libraryGroupName = 'com.tianscar.soundtouch'
-        libraryVersionName = '1.1.0'
+        libraryVersionName = '1.1.1'
 
         librarySourceCompatibility = JavaVersion.VERSION_1_8
         libraryTargetCompatibility = JavaVersion.VERSION_1_8
