@@ -23,8 +23,6 @@
 
 #include "com_tianscar_soundtouch_BPMDetector.h"
 
-#include <cstdlib>
-
 #if defined(_WIN32) || defined(WIN32)
 #pragma comment(lib, "SoundTouchDLL.lib")
 #endif
@@ -51,7 +49,6 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_BPMDetector_putSamples
     temp = env->GetFloatArrayElements(samples, nullptr);
     bpm_putSamples((HANDLE) h, temp, numSamples);
     env->ReleaseFloatArrayElements(samples, temp, 0);
-    env->DeleteLocalRef(samples);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_BPMDetector_putSamples_1i16
@@ -60,7 +57,6 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_BPMDetector_putSamples_1i16
     temp = env->GetShortArrayElements(samples, nullptr);
     bpm_putSamples_i16((HANDLE) h, temp, numSamples);
     env->ReleaseShortArrayElements(samples, temp, 0);
-    env->DeleteLocalRef(samples);
 }
 
 JNIEXPORT jfloat JNICALL Java_com_tianscar_soundtouch_BPMDetector_getBpm

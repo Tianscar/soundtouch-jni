@@ -20,7 +20,7 @@ public class LoadLibrariesAndRunTest {
         soundTouch.setRate(2.f);
         soundTouch.putSamples(samples, samples.length);
         soundTouch.flush();
-        soundTouch.receiveSamples(samples, 44100);
+        soundTouch.receiveSamples(samples, (int) soundTouch.numSamples());
         soundTouch.dispose();
     }
 
