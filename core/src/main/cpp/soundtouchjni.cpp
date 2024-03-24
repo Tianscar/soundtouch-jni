@@ -145,7 +145,7 @@ JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_receiveSamples_1i
     jshort *temp;
     jboolean isCopy;
     temp = env->GetShortArrayElements(outBuffer, &isCopy);
-    auto length = (jsize) soundtouch_receiveSamples((HANDLE) h, temp, maxSamples);
+    auto length = (jsize) soundtouch_receiveSamples_i16((HANDLE) h, temp, maxSamples);
     if (isCopy) env->SetShortArrayRegion(outBuffer, 0, length, temp);
     env->ReleaseShortArrayElements(outBuffer, temp, 0);
     return length;
