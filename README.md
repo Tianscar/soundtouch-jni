@@ -17,9 +17,9 @@ repositories {
 ```groovy
 dependencies {
     ...
-    implementation 'com.tianscar.soundtouch:soundtouch-jni-core:1.0.6'    // core
-    implementation 'com.tianscar.soundtouch:soundtouch-jni-android:1.0.6' // Android
-    implementation 'com.tianscar.soundtouch:soundtouch-jni-javase:1.0.6'  // Java SE
+    implementation 'com.tianscar.soundtouch:soundtouch-jni-core:1.0.7'    // core
+    implementation 'com.tianscar.soundtouch:soundtouch-jni-android:1.0.7' // Android
+    implementation 'com.tianscar.soundtouch:soundtouch-jni-javase:1.0.7'  // Java SE
 }
 ```
 
