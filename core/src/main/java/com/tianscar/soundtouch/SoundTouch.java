@@ -25,6 +25,10 @@
 
 package com.tianscar.soundtouch;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import static com.tianscar.soundtouch.Util.checkUnsignedInt;
 import static com.tianscar.soundtouch.Util.loadLibrary;
 import static java.util.Objects.requireNonNull;
@@ -73,7 +77,7 @@ import static java.util.Objects.requireNonNull;
  *
  * @author Tianscar
  */
-public final class SoundTouch {
+public final class SoundTouch implements Closeable {
 
     /** Soundtouch library version string */
     public static final String SOUNDTOUCH_VERSION = "2.3.2";
@@ -170,10 +174,10 @@ public final class SoundTouch {
     }
 
     private volatile long handle;
-    private volatile boolean disposed;
+    private final AtomicBoolean disposed;
 
     private void checkDisposed() {
-        if (disposed) throw new IllegalStateException("The native instance has been disposed. " +
+        if (disposed.get()) throw new IllegalStateException("The native instance has been disposed. " +
                 "Please create a new SoundTouch object for use.");
     }
 
@@ -183,23 +187,36 @@ public final class SoundTouch {
      * @return whether the native instance has been destroyed
      */
     public boolean isDisposed() {
-        return disposed;
+        return disposed.get();
     }
 
     /** Create a new instance of SoundTouch processor. */
     public SoundTouch() {
         handle = createInstance();
-        disposed = false;
+        disposed = new AtomicBoolean(false);
     }
     private static native long createInstance();
 
     /** Destroys a SoundTouch processor instance. */
     public void dispose() {
-        checkDisposed();
-        disposed = true;
-        destroyInstance(handle);
-        handle = 0;
+        if (disposed.compareAndSet(false, true)) {
+            destroyInstance(handle);
+            handle = 0;
+        }
     }
+
+    /** Destroys a SoundTouch processor instance. */
+    @Override
+    public void close() throws IOException {
+        dispose();
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    protected void finalize() throws Throwable {
+        dispose();
+    }
+
     private static native void destroyInstance(long h);
 
     /** Get SoundTouch library version string.

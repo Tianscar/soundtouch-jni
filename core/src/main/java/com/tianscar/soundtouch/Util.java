@@ -60,60 +60,59 @@ final class Util {
             System.loadLibrary("soundtouchjni");
         }
         else {
-            final String os = osName.toLowerCase(), arch = osArch.toLowerCase();
-            final String resName, resArch;
-            final String prefix, extension;
-            if (os.contains("win") && arch.contains("aarch64")) {
-                resName = "windows";
-                resArch = "aarch64";
-            }
-            else if (os.contains("win") && (arch.contains("x86") || arch.contains("amd"))) {
-                resName = "windows";
-                if (arch.contains("64")) resArch = "x86_64";
-                else resArch = "x86";
-            }
-            else if ((os.contains("mac") || os.contains("osx")) && (arch.contains("x86") || arch.contains("amd")) && arch.contains("64")) {
-                resName = "macos";
-                resArch = "x86_64";
-            }
-            else if ((os.contains("mac") || os.contains("osx")) && arch.contains("aarch64")) {
-                resName = "macos";
-                resArch = "arm64";
-            }
-            else if ((os.contains("nix") || os.contains("nux")) && (arch.contains("x86") || arch.contains("amd"))) {
-                resName = "linux";
-                if (arch.contains("64")) resArch = "amd64";
-                else resArch = "i386";
-            }
-            else throw new UnsupportedOperationException("Unsupported platform: " + osName + " " + osArch);
-            if (resName.equals("windows")) {
-                prefix = "";
-                extension = "dll";
-            }
-            else {
-                prefix = "lib";
-                if (resName.equals("macos")) {
-                    extension = "dylib";
-                }
-                else extension = "so";
-            }
-            final String SoundTouchDLL = prefix + "SoundTouchDLL" + "." + extension, soundtouchjni = prefix + "soundtouchjni" + "." + extension;
             try {
                 // load from java.library.path
-                System.loadLibrary(SoundTouchDLL);
-                System.loadLibrary(soundtouchjni);
+                System.loadLibrary("SoundTouchDLL");
+                System.loadLibrary("soundtouchjni");
             }
             catch (final UnsatisfiedLinkError e) {
+                final String os = osName.toLowerCase(), arch = osArch.toLowerCase();
+                final String resName, resArch;
+                final String prefix, extension;
+                if (os.contains("win") && arch.contains("aarch64")) {
+                    resName = "windows";
+                    resArch = "aarch64";
+                }
+                else if (os.contains("win") && (arch.contains("x86") || arch.contains("amd"))) {
+                    resName = "windows";
+                    if (arch.contains("64")) resArch = "x86_64";
+                    else resArch = "x86";
+                }
+                else if ((os.contains("mac") || os.contains("osx")) && (arch.contains("x86") || arch.contains("amd")) && arch.contains("64")) {
+                    resName = "macos";
+                    resArch = "x86_64";
+                }
+                else if ((os.contains("mac") || os.contains("osx")) && arch.contains("aarch64")) {
+                    resName = "macos";
+                    resArch = "arm64";
+                }
+                else if ((os.contains("nix") || os.contains("nux")) && (arch.contains("x86") || arch.contains("amd"))) {
+                    resName = "linux";
+                    if (arch.contains("64")) resArch = "amd64";
+                    else resArch = "i386";
+                }
+                else throw new UnsupportedOperationException("Unsupported platform: " + osName + " " + osArch);
+                if (resName.equals("windows")) {
+                    prefix = "";
+                    extension = "dll";
+                }
+                else {
+                    prefix = "lib";
+                    if (resName.equals("macos")) {
+                        extension = "dylib";
+                    }
+                    else extension = "so";
+                }
+                final String SoundTouchDLL = prefix + "SoundTouchDLL" + "." + extension, soundtouchjni = prefix + "soundtouchjni" + "." + extension;
                 final String resDir = resName + "-" + resArch;
                 final File outDir = new File(System.getProperty("java.io.tmpdir"),
-                        SoundTouch.class.getCanonicalName() + "-" +
-                                System.getProperty("user.name"));
+                        SoundTouch.class.getName() + "-" + UUID.randomUUID());
                 if (!outDir.exists()) {
                     if (!outDir.mkdirs()) throw new IllegalStateException("Cannot create output directory!");
                 }
                 if (!outDir.canWrite()) throw new IllegalStateException("Cannot create output directory!");
-                final File SoundTouchDLLFile = new File(outDir, UUID.randomUUID().toString());
-                final File soundtouchjniFile = new File(outDir, UUID.randomUUID().toString());
+                final File SoundTouchDLLFile = new File(outDir, SoundTouchDLL);
+                final File soundtouchjniFile = new File(outDir, soundtouchjni);
                 extract(resDir, SoundTouchDLL, SoundTouchDLLFile);
                 extract(resDir, soundtouchjni, soundtouchjniFile);
                 System.load(SoundTouchDLLFile.getAbsolutePath());
@@ -140,6 +139,7 @@ final class Util {
                     target.write(buffer, 0, length);
                 }
             }
+            if (!outFile.setExecutable(true, true)) throw new IOException("Cannot make the library executable!");
         }
         catch (final IOException e) {
             throw new RuntimeException(e);

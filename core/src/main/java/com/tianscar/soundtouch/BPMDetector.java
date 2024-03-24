@@ -25,6 +25,10 @@
 
 package com.tianscar.soundtouch;
 
+import java.io.Closeable;
+import java.io.IOException;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import static com.tianscar.soundtouch.Util.loadLibrary;
 
 /**
@@ -60,17 +64,17 @@ import static com.tianscar.soundtouch.Util.loadLibrary;
  *
  * @author Tianscar
  */
-public final class BPMDetector {
+public final class BPMDetector implements Closeable {
 
     static {
         loadLibrary();
     }
 
     private volatile long handle;
-    private volatile boolean disposed;
+    private final AtomicBoolean disposed;
 
     private void checkDisposed() {
-        if (disposed) throw new IllegalStateException("The native instance has been disposed. " +
+        if (disposed.get()) throw new IllegalStateException("The native instance has been disposed. " +
                 "Please create a new SoundTouch object for use.");
     }
 
@@ -80,7 +84,7 @@ public final class BPMDetector {
      * @return whether the native instance has been destroyed
      */
     public boolean isDisposed() {
-        return disposed;
+        return disposed.get();
     }
 
     /** Create a new instance of BPM detector.
@@ -90,17 +94,30 @@ public final class BPMDetector {
      */
     public BPMDetector(int numChannels, int sampleRate) {
         handle = createInstance(numChannels, sampleRate);
-        disposed = false;
+        disposed = new AtomicBoolean(false);
     }
     private static native long createInstance(int numChannels, int sampleRate);
 
     /** Destroys a BPM detector instance. */
     public void dispose() {
-        checkDisposed();
-        disposed = true;
-        destroyInstance(handle);
-        handle = 0;
+        if (disposed.compareAndSet(false, true)) {
+            destroyInstance(handle);
+            handle = 0;
+        }
     }
+
+    /** Destroys a BPM detector instance. */
+    @Override
+    public void close() throws IOException {
+        dispose();
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    protected void finalize() throws Throwable {
+        dispose();
+    }
+
     private static native void destroyInstance(long h);
 
     /** Feed 'numSamples' sample frames from 'samples' into the BPM detector.
