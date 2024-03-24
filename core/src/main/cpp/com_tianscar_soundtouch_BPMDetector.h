@@ -26,18 +26,18 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_BPMDetector_destroyInstance
 /*
  * Class:     com_tianscar_soundtouch_BPMDetector
  * Method:    putSamples
- * Signature: (J[FI)V
+ * Signature: (J[FII)V
  */
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_BPMDetector_putSamples
-  (JNIEnv *, jclass, jlong, jfloatArray, jint);
+  (JNIEnv *, jclass, jlong, jfloatArray, jint, jint);
 
 /*
  * Class:     com_tianscar_soundtouch_BPMDetector
  * Method:    putSamples_i16
- * Signature: (J[SI)V
+ * Signature: (J[SII)V
  */
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_BPMDetector_putSamples_1i16
-  (JNIEnv *, jclass, jlong, jshortArray, jint);
+  (JNIEnv *, jclass, jlong, jshortArray, jint, jint);
 
 /*
  * Class:     com_tianscar_soundtouch_BPMDetector

@@ -44,18 +44,18 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_BPMDetector_destroyInstance
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_BPMDetector_putSamples
-(JNIEnv *env, jclass clazz, jlong h, jfloatArray samples, jint numSamples) {
+(JNIEnv *env, jclass clazz, jlong h, jfloatArray samples, jint offset, jint numSamples) {
     jfloat *temp;
     temp = env->GetFloatArrayElements(samples, nullptr);
-    bpm_putSamples((HANDLE) h, temp, numSamples);
+    bpm_putSamples((HANDLE) h, (jfloat *) ((jsize) temp + offset), numSamples);
     env->ReleaseFloatArrayElements(samples, temp, 0);
 }
 
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_BPMDetector_putSamples_1i16
-(JNIEnv *env, jclass clazz, jlong h, jshortArray samples, jint numSamples) {
+(JNIEnv *env, jclass clazz, jlong h, jshortArray samples, jint offset, jint numSamples) {
     jshort *temp;
     temp = env->GetShortArrayElements(samples, nullptr);
-    bpm_putSamples_i16((HANDLE) h, temp, numSamples);
+    bpm_putSamples_i16((HANDLE) h, (jshort *) ((jsize) temp + offset), numSamples);
     env->ReleaseShortArrayElements(samples, temp, 0);
 }
 

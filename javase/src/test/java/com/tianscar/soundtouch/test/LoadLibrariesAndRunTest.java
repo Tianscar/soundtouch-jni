@@ -18,9 +18,9 @@ public class LoadLibrariesAndRunTest {
         soundTouch.setSampleRate(44100);
         soundTouch.setChannels(1);
         soundTouch.setRate(2.f);
-        soundTouch.putSamples(samples, samples.length);
+        soundTouch.putSamples(samples, 0, samples.length);
         soundTouch.flush();
-        soundTouch.receiveSamples(samples, (int) soundTouch.numSamples());
+        soundTouch.receiveSamples(samples, 0, (int) soundTouch.numSamples());
         soundTouch.dispose();
     }
 

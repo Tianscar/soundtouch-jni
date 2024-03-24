@@ -29,7 +29,9 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.tianscar.soundtouch.Util.checkUnsignedInt;
 import static com.tianscar.soundtouch.Util.loadLibrary;
+import static java.util.Objects.requireNonNull;
 
 /**
  * The BPMDetector class that invokes native BPMDetector routines through the JNI
@@ -123,25 +125,33 @@ public final class BPMDetector implements Closeable {
     /** Feed 'numSamples' sample frames from 'samples' into the BPM detector.
      *
      * @param samples Sample buffer array.
+     * @param offset Offset of sample buffer array.
      * @param numSamples Number of samples in buffer. Notice that in case of stereo-sound a single sample
      *                   contains data for both channels.
      */
-    public void putSamples(final float[] samples, int numSamples) {
-        putSamples(handle, samples, numSamples);
+    public void putSamples(final float[] samples, int offset, int numSamples) {
+        checkDisposed();
+        requireNonNull(samples, "samples cannot be null.");
+        checkUnsignedInt(numSamples);
+        putSamples(handle, samples, offset, numSamples);
     }
-    private static native void putSamples(long h, final float[] samples, int numSamples);
+    private static native void putSamples(long h, final float[] samples, int offset, int numSamples);
 
     /** Feed 'numSamples' sample frames from 'samples' into the BPM detector.
      * 16bit int sample format version.
      *
      * @param samples Sample buffer array.
+     * @param offset Offset of sample buffer array.
      * @param numSamples Number of samples in buffer. Notice that in case of stereo-sound a single sample
      *                   contains data for both channels.
      */
-    public void putSamplesI16(final short[] samples, int numSamples) {
-        putSamples_i16(handle, samples, numSamples);
+    public void putSamples(final short[] samples, int offset, int numSamples) {
+        checkDisposed();
+        requireNonNull(samples, "samples cannot be null.");
+        checkUnsignedInt(numSamples);
+        putSamples_i16(handle, samples, offset, numSamples);
     }
-    private static native void putSamples_i16(long h, final short[] samples, int numSamples);
+    private static native void putSamples_i16(long h, final short[] samples, int offset, int numSamples);
 
     /** Analyzes the results and returns the BPM rate. Use this function to read result
      * after whole song data has been input to the class by consecutive calls of
@@ -150,6 +160,7 @@ public final class BPMDetector implements Closeable {
      * @return Beats-per-minute rate, or zero if detection failed.
      */
     public float getBPM() {
+        checkDisposed();
         return getBpm(handle);
     }
     private static native float getBpm(long h);

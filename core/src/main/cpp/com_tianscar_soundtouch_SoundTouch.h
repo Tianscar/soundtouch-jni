@@ -8,7 +8,7 @@
 extern "C" {
 #endif
 #undef com_tianscar_soundtouch_SoundTouch_SOUNDTOUCH_VERSION_ID
-#define com_tianscar_soundtouch_SoundTouch_SOUNDTOUCH_VERSION_ID 20301LL
+#define com_tianscar_soundtouch_SoundTouch_SOUNDTOUCH_VERSION_ID 20302LL
 #undef com_tianscar_soundtouch_SoundTouch_SETTING_USE_AA_FILTER
 #define com_tianscar_soundtouch_SoundTouch_SETTING_USE_AA_FILTER 0L
 #undef com_tianscar_soundtouch_SoundTouch_SETTING_AA_FILTER_LENGTH
@@ -126,18 +126,18 @@ JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_flush
 /*
  * Class:     com_tianscar_soundtouch_SoundTouch
  * Method:    putSamples
- * Signature: (J[FI)V
+ * Signature: (J[FII)V
  */
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_putSamples
-  (JNIEnv *, jclass, jlong, jfloatArray, jint);
+  (JNIEnv *, jclass, jlong, jfloatArray, jint, jint);
 
 /*
  * Class:     com_tianscar_soundtouch_SoundTouch
  * Method:    putSamples_i16
- * Signature: (J[SI)V
+ * Signature: (J[SII)V
  */
 JNIEXPORT void JNICALL Java_com_tianscar_soundtouch_SoundTouch_putSamples_1i16
-  (JNIEnv *, jclass, jlong, jshortArray, jint);
+  (JNIEnv *, jclass, jlong, jshortArray, jint, jint);
 
 /*
  * Class:     com_tianscar_soundtouch_SoundTouch
@@ -174,18 +174,18 @@ JNIEXPORT jlong JNICALL Java_com_tianscar_soundtouch_SoundTouch_numUnprocessedSa
 /*
  * Class:     com_tianscar_soundtouch_SoundTouch
  * Method:    receiveSamples
- * Signature: (J[FI)I
+ * Signature: (J[FII)I
  */
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_receiveSamples
-  (JNIEnv *, jclass, jlong, jfloatArray, jint);
+  (JNIEnv *, jclass, jlong, jfloatArray, jint, jint);
 
 /*
  * Class:     com_tianscar_soundtouch_SoundTouch
  * Method:    receiveSamples_i16
- * Signature: (J[SI)I
+ * Signature: (J[SII)I
  */
 JNIEXPORT jint JNICALL Java_com_tianscar_soundtouch_SoundTouch_receiveSamples_1i16
-  (JNIEnv *, jclass, jlong, jshortArray, jint);
+  (JNIEnv *, jclass, jlong, jshortArray, jint, jint);
 
 /*
  * Class:     com_tianscar_soundtouch_SoundTouch

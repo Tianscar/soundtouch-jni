@@ -241,6 +241,7 @@ public final class SoundTouch implements Closeable {
      * @param newRate the new rate
      */
     public void setRate(float newRate) {
+        checkDisposed();
         setRate(handle, newRate);
     }
     private static native void setRate(long h, float newRate);
@@ -251,6 +252,7 @@ public final class SoundTouch implements Closeable {
      * @param newTempo the new tempo
      */
     public void setTempo(float newTempo) {
+        checkDisposed();
         setTempo(handle, newTempo);
     }
     private static native void setTempo(long h, float newTempo);
@@ -261,6 +263,7 @@ public final class SoundTouch implements Closeable {
      * @param newRate the new rate change radio
      */
     public void setRateChange(float newRate) {
+        checkDisposed();
         setRateChange(handle, newRate);
     }
     private static native void setRateChange(long h, float newRate);
@@ -271,6 +274,7 @@ public final class SoundTouch implements Closeable {
      * @param newTempo the new tempo change radio
      */
     public void setTempoChange(float newTempo) {
+        checkDisposed();
         setTempoChange(handle, newTempo);
     }
     private static native void setTempoChange(long h, float newTempo);
@@ -281,6 +285,7 @@ public final class SoundTouch implements Closeable {
      * @param newPitch the new pitch
      */
     public void setPitch(float newPitch) {
+        checkDisposed();
         setPitch(handle, newPitch);
     }
     private static native void setPitch(long h, float newPitch);
@@ -291,6 +296,7 @@ public final class SoundTouch implements Closeable {
      * @param newPitch the new pitch octaves
      */
     public void setPitchOctaves(float newPitch) {
+        checkDisposed();
         setPitchOctaves(handle, newPitch);
     }
     private static native void setPitchOctaves(long h, float newPitch);
@@ -301,6 +307,7 @@ public final class SoundTouch implements Closeable {
      * @param newPitch the new pitch semi-tones
      */
     public void setPitchSemiTones(float newPitch) {
+        checkDisposed();
         setPitchSemiTones(handle, newPitch);
     }
     private static native void setPitchSemiTones(long h, float newPitch);
@@ -310,6 +317,7 @@ public final class SoundTouch implements Closeable {
      * @param numChannels Number of channels.
      */
     public void setChannels(long numChannels) {
+        checkDisposed();
         checkUnsignedInt(numChannels);
         setChannels(handle, numChannels);
     }
@@ -320,6 +328,7 @@ public final class SoundTouch implements Closeable {
      * @param srate Sample rate in Hz.
      */
     public void setSampleRate(long srate) {
+        checkDisposed();
         checkUnsignedInt(srate);
         setSampleRate(handle, srate);
     }
@@ -334,6 +343,7 @@ public final class SoundTouch implements Closeable {
      * in the middle of a sound stream.
      */
     public void flush() {
+        checkDisposed();
         flush(handle);
     }
     private static native void flush(long h);
@@ -343,35 +353,42 @@ public final class SoundTouch implements Closeable {
      * calling this function, otherwise throws a runtime_error exception.
      *
      * @param samples Sample buffer array.
+     * @param offset Offset of sample buffer array.
      * @param numSamples Number of sample frames in buffer. Notice that in case of multi-channel sound a single
      *                   sample frame contains data for all channels.
      */
-    public void putSamples(final float[] samples, int numSamples) {
+    public void putSamples(final float[] samples, int offset, int numSamples) {
+        checkDisposed();
         requireNonNull(samples, "samples cannot be null.");
+        checkUnsignedInt(offset);
         checkUnsignedInt(numSamples);
-        putSamples(handle, samples, numSamples);
+        putSamples(handle, samples, offset, numSamples);
     }
-    private static native void putSamples(long h, final float[] samples, int numSamples);
+    private static native void putSamples(long h, final float[] samples, int offset, int numSamples);
 
     /** int16 version of putSamples(): This accept int16 (short) sample data
      * and internally converts it to float format before processing.
      *
      * @param samples Sample buffer array.
+     * @param offset Offset of sample buffer array.
      * @param numSamples Number of sample frames in buffer. Notice that in case of multi-channel sound a single
      *                   sample frame contains data for all channels.
      */
-    public void putSamplesI16(final short[] samples, int numSamples) {
+    public void putSamples(final short[] samples, int offset, int numSamples) {
+        checkDisposed();
         requireNonNull(samples, "samples cannot be null.");
+        checkUnsignedInt(offset);
         checkUnsignedInt(numSamples);
-        putSamples_i16(handle, samples, numSamples);
+        putSamples_i16(handle, samples, offset, numSamples);
     }
-    private static native void putSamples_i16(long h, final short[] samples, int numSamples);
+    private static native void putSamples_i16(long h, final short[] samples, int offset, int numSamples);
 
 
     /** Clears all the samples in the object's output and internal processing
      * buffers.
      */
     public void clear() {
+        checkDisposed();
         clear(handle);
     }
     private static native void clear(long h);
@@ -385,6 +402,7 @@ public final class SoundTouch implements Closeable {
      * @return true if the setting was successfully changed, otherwise false
      */
     public boolean setSetting(int settingId, int value) {
+        checkDisposed();
         return setSetting(handle, settingId, value) != 0;
     }
     private static native int setSetting(long h, int settingId, int value);
@@ -397,6 +415,7 @@ public final class SoundTouch implements Closeable {
      * @return the setting value.
      */
     public int getSetting(int settingId) {
+        checkDisposed();
         return getSetting(handle, settingId);
     }
     private static native int getSetting(long h, int settingId);
@@ -407,6 +426,7 @@ public final class SoundTouch implements Closeable {
      * @return number of samples currently unprocessed
      */
     public long numUncompressedSamples() {
+        checkDisposed();
         return numUnprocessedSamples(handle);
     }
     private static native long numUnprocessedSamples(long h);
@@ -418,38 +438,45 @@ public final class SoundTouch implements Closeable {
      * with 'ptrBegin' function.
      *
      * @param outBuffer Buffer where to copy output samples.
+     * @param offset Offset of sample buffer array.
      * @param maxSamples How many samples to receive at max.
      *
      * @return the number of samples returned
      */
-    public int receiveSamples(float[] outBuffer, int maxSamples) {
+    public int receiveSamples(float[] outBuffer, int offset, int maxSamples) {
+        checkDisposed();
         requireNonNull(outBuffer, "outBuffer cannot be null.");
+        checkUnsignedInt(offset);
         checkUnsignedInt(maxSamples);
-        return receiveSamples(handle, outBuffer, maxSamples);
+        return receiveSamples(handle, outBuffer, offset, maxSamples);
     }
-    private static native int receiveSamples(long h, float[] outBuffer, int maxSamples);
+    private static native int receiveSamples(long h, float[] outBuffer, int offset, int maxSamples);
 
 
     /** int16 version of receiveSamples(): This converts internal float samples
      * into int16 (short) return data type.
      *
      * @param outBuffer Buffer where to copy output samples.
+     * @param offset Offset of sample buffer array.
      * @param maxSamples How many samples to receive at max.
      *
      * @return the number of samples returned
      */
-    public int receiveSamplesI16(short[] outBuffer, int maxSamples) {
+    public int receiveSamplesI16(short[] outBuffer, int offset, int maxSamples) {
+        checkDisposed();
         requireNonNull(outBuffer, "outBuffer cannot be null.");
+        checkUnsignedInt(offset);
         checkUnsignedInt(maxSamples);
-        return receiveSamples_i16(handle, outBuffer, maxSamples);
+        return receiveSamples_i16(handle, outBuffer, offset, maxSamples);
     }
-    private static native int receiveSamples_i16(long h, short[] outBuffer, int maxSamples);
+    private static native int receiveSamples_i16(long h, short[] outBuffer, int offset, int maxSamples);
 
     /** Returns number of samples currently available.
      *
      * @return number of samples currently available
      */
     public long numSamples() {
+        checkDisposed();
         return numSamples(handle);
     }
     private static native long numSamples(long h);
@@ -459,6 +486,7 @@ public final class SoundTouch implements Closeable {
      * @return whether there aren't any samples available for outputting
      */
     public boolean isEmpty() {
+        checkDisposed();
         return isEmpty(handle) != 0;
     }
     private static native int isEmpty(long h);
